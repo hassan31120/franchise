@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\Api\CatController;
 use App\Http\Controllers\Api\CountryController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -33,3 +34,4 @@ Route::middleware('auth:api')->group(function () {
 });
 
 Route::get('/countries', [CountryController::class, 'index']);
+Route::get('/cats', [CatController::class, 'index']);

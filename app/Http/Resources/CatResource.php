@@ -4,7 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class CountryResource extends JsonResource
+class CatResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -19,7 +19,7 @@ class CountryResource extends JsonResource
             'name' => $this->name,
             'image' => asset($this->image),
             'chances' => null,
-            'cats' => count($this->cats)
+            'countries' => count($this->countries)
         ];
     }
 }

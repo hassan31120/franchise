@@ -4,11 +4,10 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\CatResource;
-use App\Http\Resources\CountryResource;
-use App\Models\Country;
+use App\Models\Cat;
 use Illuminate\Http\Request;
 
-class CountryController extends Controller
+class CatController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,29 +16,18 @@ class CountryController extends Controller
      */
     public function index()
     {
-        $countries = Country::all();
-        if (count($countries) > 0) {
+        $cats = Cat::all();
+        if (count($cats) > 0) {
             return response()->json([
                 'success' => true,
-                'countries' => CountryResource::collection($countries)
+                'cats' => CatResource::collection($cats)
             ], 200);
         } else {
             return response()->json([
                 'success' => false,
-                'countries' => []
+                'cats' => []
             ], 404);
         }
-        // $c = Country::find($id);
-        // $cats = $c->cats;
-        // if (count($cats) > 0) {
-        //     return response()->json([
-        //         'cats' => CatResource::collection($cats)
-        //     ], 200);
-        // } else {
-        //     return response()->json([
-        //         'cats' => 'noooooooooo'
-        //     ], 404);
-        // }
     }
 
     /**
