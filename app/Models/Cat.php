@@ -12,4 +12,8 @@ class Cat extends Model
     public function countries(){
         return $this->belongsToMany(Country::class, 'country_cat', 'cat_id', 'country_id');
     }
+    public function chances()
+    {
+        return $this->hasMany(Chance::class, 'cat_id');
+    }
 }

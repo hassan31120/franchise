@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\CatController;
+use App\Http\Controllers\Api\ChanceController;
 use App\Http\Controllers\Api\CountryController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -35,3 +36,8 @@ Route::middleware('auth:api')->group(function () {
 
 Route::get('/countries', [CountryController::class, 'index']);
 Route::get('/cats', [CatController::class, 'index']);
+Route::get('/chances/{id}', [ChanceController::class, 'index']);
+
+Route::post('country/add', [CountryController::class, 'store']);
+Route::post('country/edit/{id}', [CountryController::class, 'update']);
+Route::post('country/del/{id}', [CountryController::class, 'destroy']);

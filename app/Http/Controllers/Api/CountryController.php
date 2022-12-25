@@ -7,14 +7,10 @@ use App\Http\Resources\CatResource;
 use App\Http\Resources\CountryResource;
 use App\Models\Country;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class CountryController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
         $countries = Country::all();
@@ -29,82 +25,77 @@ class CountryController extends Controller
                 'countries' => []
             ], 404);
         }
-        // $c = Country::find($id);
-        // $cats = $c->cats;
-        // if (count($cats) > 0) {
-        //     return response()->json([
-        //         'cats' => CatResource::collection($cats)
-        //     ], 200);
-        // } else {
-        //     return response()->json([
-        //         'cats' => 'noooooooooo'
-        //     ], 404);
-        // }
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
-        //
+        $data = $request->all();
+        $validator = Validator::make($data, [
+            'name' => 'required',
+            'image' => 'required'
+        ]);
+        if ($validator->fails()) {
+            return response()->json(['message' => $validator->errors()->first()], 400);
+        }
+        if ($request->hasFile('image')) {
+            $file = $request->file('image');
+            $path = 'storage/partners/' . date('Y') . '/' . date('m') . '/';
+            $name = $path . time() . '-' . $file->getClientOriginalName();
+            $file->move($path, $name);
+            $data['image'] = $name;
+        }
+        $country = Country::create($data);
+        return response()->json([
+            'success' => true,
+            'country' => new CountryResource($country)
+        ], 200);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
-        //
+        $country = Country::find($id);
+        if ($country) {
+            $data = $request->all();
+            $validator = Validator::make($data, [
+                'name' => 'required'
+            ]);
+            if ($validator->fails()) {
+                return response()->json(['message' => $validator->errors()->first()], 400);
+            }
+            if ($request->hasFile('image')) {
+                $file = $request->file('image');
+                $path = 'storage/partners/' . date('Y') . '/' . date('m') . '/';
+                $name = $path . time() . '-' . $file->getClientOriginalName();
+                $file->move($path, $name);
+                $data['image'] = $name;
+            }
+            $country->update($data);
+            return response()->json([
+                'success' => true,
+                'country' => new CountryResource($country)
+            ], 200);
+        } else {
+            return response()->json([
+                'success' => false,
+                'message' => 'there is no country'
+            ], 404);
+        }
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
-        //
+        $country = Country::find($id);
+        if ($country) {
+            $country->delete();
+            return response()->json([
+                'success' => true,
+                'message' => 'country deleted successfully'
+            ], 200);
+        } else {
+            return response()->json([
+                'success' => false,
+                'message' => 'there is no country'
+            ], 404);
+        }
     }
 }
