@@ -41,3 +41,11 @@ Route::get('/chances/{id}', [ChanceController::class, 'index']);
 Route::post('country/add', [CountryController::class, 'store']);
 Route::post('country/edit/{id}', [CountryController::class, 'update']);
 Route::post('country/del/{id}', [CountryController::class, 'destroy']);
+
+Route::post('cat/add', [CatController::class, 'store']);
+Route::post('cat/edit/{id}', [CatController::class, 'update']);
+Route::post('cat/del/{id}', [CatController::class, 'destroy']);
+
+Route::post('chance/add', [ChanceController::class, 'store']);
+Route::post('chance/edit/{id}', [ChanceController::class, 'update']);
+Route::post('chance/del/{id}', [ChanceController::class, 'destroy']);

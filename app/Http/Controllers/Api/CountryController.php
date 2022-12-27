@@ -5,7 +5,9 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\CatResource;
 use App\Http\Resources\CountryResource;
+use App\Models\Cat;
 use App\Models\Country;
+use App\Models\CountryCat;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -45,6 +47,13 @@ class CountryController extends Controller
             $data['image'] = $name;
         }
         $country = Country::create($data);
+        $cats = Cat::all();
+        foreach ($cats as $cat) {
+            CountryCat::create([
+                'country_id' => $country->id,
+                'cat_id' => $cat->id
+            ]);
+        }
         return response()->json([
             'success' => true,
             'country' => new CountryResource($country)

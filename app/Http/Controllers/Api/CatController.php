@@ -5,15 +5,13 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\CatResource;
 use App\Models\Cat;
+use App\Models\Country;
+use App\Models\CountryCat;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class CatController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
         $cats = Cat::all();
@@ -30,69 +28,81 @@ class CatController extends Controller
         }
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
-        //
+        $data = $request->all();
+        $validator = Validator::make($data, [
+            'name' => 'required'
+        ]);
+        if ($validator->fails()) {
+            return response()->json(['message' => $validator->errors()->first()], 400);
+        }
+        if ($request->hasFile('image')) {
+            $file = $request->file('image');
+            $path = 'storage/cats/' . date('Y') . '/' . date('m') . '/';
+            $name = $path . time() . '-' . $file->getClientOriginalName();
+            $file->move($path, $name);
+            $data['image'] = $name;
+        }
+        $cat = Cat::create($data);
+        $countries = Country::all();
+        foreach ($countries as $country) {
+            CountryCat::create([
+                'country_id' => $country->id,
+                'cat_id' => $cat->id
+            ]);
+        }
+        return response()->json([
+            'success' => true,
+            'country' => new CatResource($cat)
+        ], 200);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
-        //
+        $cat = Cat::find($id);
+        if ($cat) {
+            $data = $request->all();
+            $validator = Validator::make($data, [
+                'name' => 'required'
+            ]);
+            if ($validator->fails()) {
+                return response()->json(['message' => $validator->errors()->first()], 400);
+            }
+            if ($request->hasFile('image')) {
+                $file = $request->file('image');
+                $path = 'storage/cats/' . date('Y') . '/' . date('m') . '/';
+                $name = $path . time() . '-' . $file->getClientOriginalName();
+                $file->move($path, $name);
+                $data['image'] = $name;
+            }
+            $cat->update($data);
+            return response()->json([
+                'success' => true,
+                'country' => new CatResource($cat)
+            ], 200);
+        } else {
+            return response()->json([
+                'success' => false,
+                'message' => 'there is no cat'
+            ], 404);
+        }
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
-        //
+        $cat = Cat::find($id);
+        if ($cat) {
+            $cat->delete();
+            return response()->json([
+                'success' => true,
+                'message' => 'cat deleted successfully'
+            ], 200);
+        } else {
+            return response()->json([
+                'success' => false,
+                'message' => 'there is no cat'
+            ], 404);
+        }
     }
 }
