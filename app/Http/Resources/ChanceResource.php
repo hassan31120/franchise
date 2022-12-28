@@ -29,7 +29,7 @@ class ChanceResource extends JsonResource
             'price' => $this->price,
             'country' => $this->country->name,
             'cat' => $this->cat->name,
-            'cat_id' => $this->cat_id,
+            'cat_id' => (int)$this->cat_id,
             'images' => ChanceImageResource::collection($this->images),
         ];
     }

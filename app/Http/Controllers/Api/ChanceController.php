@@ -10,6 +10,8 @@ use App\Models\Chance;
 use App\Models\Country;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use App\Models\ChanceImage;
+use Symfony\Component\Console\Input\Input;
 
 class ChanceController extends Controller
 {
@@ -39,7 +41,7 @@ class ChanceController extends Controller
 
     public function store(Request $request)
     {
-        $data = $request->all();
+        $data = $request->except('images');
         $validator = Validator::make($data, [
             'title' => 'required',
             'desc' => 'required',
@@ -50,8 +52,9 @@ class ChanceController extends Controller
             'number' => 'required',
             'resp' => 'required',
             'price' => 'required',
-            // 'country_id ' => 'required',
-            // 'cat_id ' => 'required',
+            'cat_id' => 'required',
+            'country_id' => 'required',
+            // 'images' => 'required',
         ]);
         if ($validator->fails()) {
             return response()->json(['message' => $validator->errors()->first()], 400);
@@ -64,6 +67,18 @@ class ChanceController extends Controller
             $data['logo'] = $name;
         }
         $chance = Chance::create($data);
+        if ($request->hasFile('images')) {
+            foreach ($request->file('images') as $image) {
+                $file = $image;
+                $path = 'storage/chances/' . date('Y') . '/' . date('m') . '/';
+                $name = $path . time() . '-' . $file->getClientOriginalName();
+                $file->move($path, $name);
+                ChanceImage::create([
+                    'chance_id' => $chance->id,
+                    'image' => $name
+                ]);
+            }
+        }
         return response()->json([
             'success' => true,
             'chance' => new ChanceResource($chance)
@@ -72,48 +87,71 @@ class ChanceController extends Controller
 
     public function update(Request $request, $id)
     {
-        $cat = Cat::find($id);
-        if ($cat) {
-            $data = $request->all();
+        $chance = Chance::find($id);
+        if ($chance) {
+            $data = $request->except('images');
             $validator = Validator::make($data, [
-                'name' => 'required'
+                'title' => 'required',
+                'desc' => 'required',
+                // 'logo' => 'required',
+                'branches' => 'required',
+                'outlets' => 'required',
+                'provider' => 'required',
+                'number' => 'required',
+                'resp' => 'required',
+                'price' => 'required',
+                'cat_id' => 'required',
+                'country_id' => 'required',
+                // 'images' => 'required',
             ]);
             if ($validator->fails()) {
                 return response()->json(['message' => $validator->errors()->first()], 400);
             }
-            if ($request->hasFile('image')) {
-                $file = $request->file('image');
-                $path = 'storage/cats/' . date('Y') . '/' . date('m') . '/';
+            if ($request->hasFile('logo')) {
+                $file = $request->file('logo');
+                $path = 'storage/chances/' . date('Y') . '/' . date('m') . '/';
                 $name = $path . time() . '-' . $file->getClientOriginalName();
                 $file->move($path, $name);
-                $data['image'] = $name;
+                $data['logo'] = $name;
             }
-            $cat->update($data);
+            $chance->update($data);
+            if ($request->hasFile('images')) {
+                foreach ($request->file('images') as $image) {
+                    $file = $image;
+                    $path = 'storage/chances/' . date('Y') . '/' . date('m') . '/';
+                    $name = $path . time() . '-' . $file->getClientOriginalName();
+                    $file->move($path, $name);
+                    ChanceImage::create([
+                        'chance_id' => $chance->id,
+                        'image' => $name
+                    ]);
+                }
+            }
             return response()->json([
                 'success' => true,
-                'country' => new CatResource($cat)
+                'chance' => new ChanceResource($chance)
             ], 200);
         } else {
             return response()->json([
                 'success' => false,
-                'message' => 'there is no cat'
+                'message' => 'there is no chance'
             ], 404);
         }
     }
 
     public function destroy($id)
     {
-        $cat = Cat::find($id);
-        if ($cat) {
-            $cat->delete();
+        $chance = Chance::find($id);
+        if ($chance) {
+            $chance->delete();
             return response()->json([
                 'success' => true,
-                'message' => 'cat deleted successfully'
+                'message' => 'chance deleted successfully'
             ], 200);
         } else {
             return response()->json([
                 'success' => false,
-                'message' => 'there is no cat'
+                'message' => 'there is no chance'
             ], 404);
         }
     }
