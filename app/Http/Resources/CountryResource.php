@@ -18,8 +18,7 @@ class CountryResource extends JsonResource
             'id' => $this->id,
             'name' => $this->name,
             'image' => asset($this->image),
-            // 'chances' => null,
-            // 'cats' => count($this->cats)
+            'chances' => count($this->chances),
         ];
     }
 }
