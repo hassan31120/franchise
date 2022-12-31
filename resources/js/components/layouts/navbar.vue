@@ -1,8 +1,8 @@
 <template>
   <nav class="topnav navbar navbar-light">
-    <!-- <button type="button" class="navbar-toggler text-muted mt-2 p-0 mr-3 collapseSidebar">
+    <button type="button" class="navbar-toggler text-muted mt-2 p-0 mr-3 collapseSidebar">
       <i class="fe fe-menu navbar-toggler-icon"></i>
-    </button> -->
+    </button>
     <form class="form-inline mr-auto searchform text-muted">
       <input
         class="form-control mr-sm-2 bg-transparent border-0 pl-4 text-muted"
@@ -12,7 +12,7 @@
       />
     </form>
     <ul class="nav">
-      <!-- <li class="nav-item">
+      <li class="nav-item">
         <a class="nav-link text-muted my-2" href="#" id="modeSwitcher" data-mode="light">
           <i class="fe fe-sun fe-16"></i>
         </a>
@@ -37,7 +37,7 @@
           <span class="fe fe-bell fe-16"></span>
           <span class="dot dot-md bg-success"></span>
         </a>
-      </li> -->
+      </li>
       <li class="nav-item dropdown">
         <a
           class="nav-link dropdown-toggle text-muted pr-0"
