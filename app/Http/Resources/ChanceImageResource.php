@@ -14,8 +14,6 @@ class ChanceImageResource extends JsonResource
      */
     public function toArray($request)
     {
-        return [
-            'image'=> asset($this->image),
-        ];
+        return asset($this->image);
     }
 }
