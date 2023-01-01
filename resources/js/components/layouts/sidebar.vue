@@ -15,7 +15,7 @@
       <!-- nav bar -->
       <div class="w-100 mb-4 d-flex">
         <a class="navbar-brand mx-auto mt-2 flex-fill text-center" href="./index.html">
-          <svg
+          <!-- <svg
             version="1.1"
             id="logo"
             class="navbar-brand-img brand-sm"
@@ -31,7 +31,8 @@
               <polygon class="st0" points="96,69 33,69 42,51 105,51 	" />
               <polygon class="st0" points="78,33 15,33 24,15 87,15 	" />
             </g>
-          </svg>
+          </svg> -->
+          <img src="@/assets/faf.png" alt="logo" width="220" height="60" />
         </a>
       </div>
 
@@ -51,13 +52,13 @@
           </a>
           <ul class="collapse list-unstyled pl-4 w-100" id="members">
             <li class="nav-item">
-              <a class="nav-link pl-3" href="./ui-color.html"
-                ><span class="ml-1 item-text">كل الأعضاء</span>
-              </a>
+              <router-link class="nav-link pl-3" :to="{ name: 'users' }"
+                ><span class="ml-1 item-text">كل الأعضاء</span></router-link
+              >
             </li>
             <li class="nav-item">
-              <a class="nav-link pl-3" href="./ui-typograpy.html"
-                ><span class="ml-1 item-text">إضافة عضو جديد</span></a
+              <router-link class="nav-link pl-3" :to="{ name: 'add_user' }"
+                ><span class="ml-1 item-text">إضافة عضو جديد</span></router-link
               >
             </li>
           </ul>
@@ -74,13 +75,13 @@
           </a>
           <ul class="collapse list-unstyled pl-4 w-100" id="countries">
             <li class="nav-item">
-              <a class="nav-link pl-3" href="./ui-color.html"
-                ><span class="ml-1 item-text">كل البلاد</span>
-              </a>
+              <router-link class="nav-link pl-3" :to="{ name: 'countries' }"
+                ><span class="ml-1 item-text">كل البلاد</span></router-link
+              >
             </li>
             <li class="nav-item">
-              <a class="nav-link pl-3" href="./ui-typograpy.html"
-                ><span class="ml-1 item-text">إضافة بلد جديد</span></a
+                <router-link class="nav-link pl-3" :to="{ name: 'add_country' }"
+                ><span class="ml-1 item-text">إضافة بلد جديد</span></router-link
               >
             </li>
           </ul>
@@ -132,11 +133,14 @@
           </ul>
         </li>
       </ul>
-      <div class="btn-box w-100 mt-4 mb-1">
+      <div
+        class="btn-box w-100 mt-4 mb-1"
+        style="background-color: #ff7c00; border-radius: 50px"
+      >
         <a
           href="https://themeforest.net/item/tinydash-bootstrap-html-admin-dashboard-template/27511269"
           target="_blank"
-          class="btn mb-2 btn-primary btn-lg btn-block"
+          class="btn mb-2 btn-lg btn-block text-white"
         >
           <i class="fe fe-log-out fe-12 mr-2"></i><span class="small">تسجيل الخروج</span>
         </a>
