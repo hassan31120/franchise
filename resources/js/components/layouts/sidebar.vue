@@ -53,13 +53,13 @@
           <ul class="collapse list-unstyled pl-4 w-100" id="members">
             <li class="nav-item">
               <router-link class="nav-link pl-3" :to="{ name: 'users' }"
-                ><span class="ml-1 item-text">كل الأعضاء</span></router-link
-              >
+                ><span class="ml-1 item-text">كل الأعضاء</span>
+              </router-link>
             </li>
             <li class="nav-item">
               <router-link class="nav-link pl-3" :to="{ name: 'add_user' }"
-                ><span class="ml-1 item-text">إضافة عضو جديد</span></router-link
-              >
+                ><span class="ml-1 item-text">إضافة عضو جديد</span>
+              </router-link>
             </li>
           </ul>
         </li>
@@ -76,13 +76,13 @@
           <ul class="collapse list-unstyled pl-4 w-100" id="countries">
             <li class="nav-item">
               <router-link class="nav-link pl-3" :to="{ name: 'countries' }"
-                ><span class="ml-1 item-text">كل البلاد</span></router-link
-              >
+                ><span class="ml-1 item-text">كل البلاد</span>
+              </router-link>
             </li>
             <li class="nav-item">
-                <router-link class="nav-link pl-3" :to="{ name: 'add_country' }"
-                ><span class="ml-1 item-text">إضافة بلد جديد</span></router-link
-              >
+              <router-link class="nav-link pl-3" :to="{ name: 'add_country' }"
+                ><span class="ml-1 item-text">إضافة بلد جديد</span>
+              </router-link>
             </li>
           </ul>
         </li>
@@ -98,14 +98,14 @@
           </a>
           <ul class="collapse list-unstyled pl-4 w-100" id="categories">
             <li class="nav-item">
-              <a class="nav-link pl-3" href="./ui-color.html"
+              <router-link class="nav-link pl-3" :to="{ name: 'cats' }"
                 ><span class="ml-1 item-text">كل الأقسام</span>
-              </a>
+              </router-link>
             </li>
             <li class="nav-item">
-              <a class="nav-link pl-3" href="./ui-typograpy.html"
-                ><span class="ml-1 item-text">إضافة قسم جديد</span></a
-              >
+              <router-link class="nav-link pl-3" :to="{ name: 'add_cat' }"
+                ><span class="ml-1 item-text">إضافة قسم جديد</span>
+              </router-link>
             </li>
           </ul>
         </li>
@@ -121,14 +121,32 @@
           </a>
           <ul class="collapse list-unstyled pl-4 w-100" id="chances">
             <li class="nav-item">
-              <a class="nav-link pl-3" href="./ui-color.html"
+              <router-link class="nav-link pl-3" :to="{ name: 'chances' }"
                 ><span class="ml-1 item-text">كل الفرص</span>
-              </a>
+              </router-link>
             </li>
             <li class="nav-item">
-              <a class="nav-link pl-3" href="./ui-typograpy.html"
-                ><span class="ml-1 item-text">إضافة فرصة جديدة</span></a
-              >
+              <router-link class="nav-link pl-3" :to="{ name: 'add_chance' }"
+                ><span class="ml-1 item-text">إضافة فرصة جديدة</span>
+              </router-link>
+            </li>
+          </ul>
+        </li>
+        <li class="nav-item dropdown">
+          <a
+            href="#noti"
+            data-toggle="collapse"
+            aria-expanded="false"
+            class="dropdown-toggle nav-link"
+          >
+            <i class="fe fe-tag fe-16"></i>
+            <span class="ml-3 item-text">الإشعارات</span>
+          </a>
+          <ul class="collapse list-unstyled pl-4 w-100" id="noti">
+            <li class="nav-item">
+              <router-link class="nav-link pl-3" :to="{ name: 'noti' }"
+                ><span class="ml-1 item-text">إرسال اشعار جديد</span>
+              </router-link>
             </li>
           </ul>
         </li>

@@ -2,17 +2,17 @@
   <div class="wrapper">
     <navbar />
     <sidebar />
-    <add_country />
+    <noti />
   </div>
 </template>
 
 <script>
 import navbar from "../../components/layouts/navbar.vue";
 import sidebar from "../../components/layouts/sidebar.vue";
-import add_country from "../../components/countries/add.vue";
+import noti from "../../components/noti/noti.vue";
 export default {
-  name: "add_countryPage",
-  components: { navbar, sidebar, add_country },
+  name: "notiPage",
+  components: { navbar, sidebar, noti },
 };
 </script>
 

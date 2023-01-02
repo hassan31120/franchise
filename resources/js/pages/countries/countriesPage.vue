@@ -11,7 +11,7 @@ import navbar from "../../components/layouts/navbar.vue";
 import sidebar from "../../components/layouts/sidebar.vue";
 import countries from "../../components/countries/all.vue";
 export default {
-  name: "add_userPage",
+  name: "countriesPage",
   components: { navbar, sidebar, countries },
 };
 </script>

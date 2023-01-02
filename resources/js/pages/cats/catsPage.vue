@@ -2,17 +2,17 @@
   <div class="wrapper">
     <navbar />
     <sidebar />
-    <add_country />
+    <cats />
   </div>
 </template>
 
 <script>
 import navbar from "../../components/layouts/navbar.vue";
 import sidebar from "../../components/layouts/sidebar.vue";
-import add_country from "../../components/countries/add.vue";
+import cats from "../../components/cats/all.vue";
 export default {
-  name: "add_countryPage",
-  components: { navbar, sidebar, add_country },
+  name: "catsPage",
+  components: { navbar, sidebar, cats },
 };
 </script>
 
