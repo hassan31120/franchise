@@ -21,7 +21,7 @@
                     name="desc"
                     id="desc"
                     cols="30"
-                    rows="5"
+                    rows="8"
                     class="form-control"
                   ></textarea>
                 </div>
@@ -61,6 +61,16 @@
                 <div class="form-group mb-3">
                   <label for="simpleinput">اللينك</label>
                   <input type="text" id="simpleinput" class="form-control" />
+                </div>
+                <div class="form-group mb-3">
+                  <label for="example-email">الصور</label>
+                  <input
+                    type="file"
+                    id="example-email"
+                    name="example-email"
+                    class="form-control"
+                    multiple
+                  />
                 </div>
                 <div class="form-group mb-3">
                   <label for="simpleinput">المسؤول عن المتقدمين</label>

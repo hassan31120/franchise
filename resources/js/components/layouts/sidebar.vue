@@ -155,13 +155,9 @@
         class="btn-box w-100 mt-4 mb-1"
         style="background-color: #ff7c00; border-radius: 50px"
       >
-        <a
-          href="https://themeforest.net/item/tinydash-bootstrap-html-admin-dashboard-template/27511269"
-          target="_blank"
-          class="btn mb-2 btn-lg btn-block text-white"
-        >
+        <button @click.prevent="logout" class="btn mb-2 btn-lg btn-block text-white">
           <i class="fe fe-log-out fe-12 mr-2"></i><span class="small">تسجيل الخروج</span>
-        </a>
+        </button>
       </div>
     </nav>
   </aside>
@@ -170,6 +166,16 @@
 <script>
 export default {
   name: "sidebar",
+  data() {
+    return {};
+  },
+  methods: {
+    logout() {
+      axios.post(`api/logout`).then(() => {
+        this.$router.push({ name: "login" });
+      });
+    },
+  },
 };
 </script>
 

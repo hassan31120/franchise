@@ -44,34 +44,29 @@ class AuthController extends Controller
 
     public function login(Request $request)
     {
-        $validator = Validator::make($request->all(), [
+        $request->validate([
             'email' => 'required|email',
             'password' => 'required',
         ]);
 
-        if ($validator->fails()) {
-            return response()->json([
-                'success' => false,
-                'error' => $validator->errors()->first()
-            ], 404);
-        }
+        $data = $request->all();
 
         if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
             $user = Auth::user();
             return response()->json([
-                'success' => true,
-                'user' => new UserResource($user)
+                'user' => Auth::user(),
+                'token' => $user->createToken('medo')->plainTextToken,
             ], 200);
-        } else {
-            return response()->json(
-                [
-                    'success' => false,
-                    'user' => [],
-                    'message' => 'Please Check your credentials',
-                ],
-                200
-            );
         }
+
+        return response()->json([
+            'password' => ['تحقق من الإيميل والرقم السري!']
+        ], 404);
+    }
+
+    public function logout()
+    {
+        Auth::logout();
     }
 
     public function profile()

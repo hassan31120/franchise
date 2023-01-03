@@ -9,6 +9,11 @@
 <script>
 export default {
   name: "home",
+  data() {
+    return {};
+  },
+  mounted() {},
+  methods: {},
 };
 </script>
 

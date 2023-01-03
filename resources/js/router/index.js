@@ -1,4 +1,5 @@
 import { createRouter, createWebHistory } from "vue-router";
+import axios from "axios";
 import homePage from "../pages/HomePage.vue";
 import usersPage from "../pages/usersPage.vue";
 import add_userPage from "../pages/users/add_userPage.vue";
@@ -10,62 +11,184 @@ import chancesPage from "../pages/chances/chancesPage.vue";
 import add_chancePage from "../pages/chances/add_chancePage.vue";
 import login from "../components/auth/login.vue";
 import notiPage from "../pages/noti/notiPage.vue";
+import error404 from "../components/errors/error404.vue";
+import error500 from "../components/errors/error500.vue";
 
 const routes = [
     {
         path: "/",
         name: "home",
         component: homePage,
+        beforeEnter: (to, from, next) => {
+            axios
+                .get(`api/authenticated`)
+                .then(() => {
+                    next();
+                })
+                .catch((err) => {
+                    return next({ name: "login" });
+                });
+        },
+    },
+    {
+        path: "/:catchAll(.*)",
+        name: "error404",
+        component: error404,
+    },
+    {
+        path: "/serverErr",
+        name: "error500",
+        component: error500,
     },
     {
         path: "/login",
         name: "login",
         component: login,
+        beforeEnter: (to, from, next) => {
+            axios
+                .get(`api/authenticated`)
+                .then(() => {
+                    return next({ name: "home" });
+                })
+                .catch((err) => {
+                    next();
+                });
+        },
     },
     {
         path: "/users",
         name: "users",
         component: usersPage,
+        beforeEnter: (to, from, next) => {
+            axios
+                .get(`api/authenticated`)
+                .then(() => {
+                    next();
+                })
+                .catch((err) => {
+                    return next({ name: "login" });
+                });
+        },
     },
     {
         path: "/add_user",
         name: "add_user",
         component: add_userPage,
+        beforeEnter: (to, from, next) => {
+            axios
+                .get(`api/authenticated`)
+                .then(() => {
+                    next();
+                })
+                .catch((err) => {
+                    return next({ name: "login" });
+                });
+        },
     },
     {
         path: "/countries",
         name: "countries",
         component: countriesPage,
+        beforeEnter: (to, from, next) => {
+            axios
+                .get(`api/authenticated`)
+                .then(() => {
+                    next();
+                })
+                .catch((err) => {
+                    return next({ name: "login" });
+                });
+        },
     },
     {
         path: "/add_country",
         name: "add_country",
         component: add_countryPage,
+        beforeEnter: (to, from, next) => {
+            axios
+                .get(`api/authenticated`)
+                .then(() => {
+                    next();
+                })
+                .catch((err) => {
+                    return next({ name: "login" });
+                });
+        },
     },
     {
         path: "/cats",
         name: "cats",
         component: catsPage,
+        beforeEnter: (to, from, next) => {
+            axios
+                .get(`api/authenticated`)
+                .then(() => {
+                    next();
+                })
+                .catch((err) => {
+                    return next({ name: "login" });
+                });
+        },
     },
     {
         path: "/add_cat",
         name: "add_cat",
         component: add_catPage,
+        beforeEnter: (to, from, next) => {
+            axios
+                .get(`api/authenticated`)
+                .then(() => {
+                    next();
+                })
+                .catch((err) => {
+                    return next({ name: "login" });
+                });
+        },
     },
     {
         path: "/chances",
         name: "chances",
         component: chancesPage,
+        beforeEnter: (to, from, next) => {
+            axios
+                .get(`api/authenticated`)
+                .then(() => {
+                    next();
+                })
+                .catch((err) => {
+                    return next({ name: "login" });
+                });
+        },
     },
     {
         path: "/add_chance",
         name: "add_chance",
         component: add_chancePage,
+        beforeEnter: (to, from, next) => {
+            axios
+                .get(`api/authenticated`)
+                .then(() => {
+                    next();
+                })
+                .catch((err) => {
+                    return next({ name: "login" });
+                });
+        },
     },
     {
         path: "/noti",
         name: "noti",
         component: notiPage,
+        beforeEnter: (to, from, next) => {
+            axios
+                .get(`api/authenticated`)
+                .then(() => {
+                    next();
+                })
+                .catch((err) => {
+                    return next({ name: "login" });
+                });
+        },
     },
 ];
 
