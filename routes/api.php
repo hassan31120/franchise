@@ -27,6 +27,7 @@ Route::middleware('auth:sanctum')->get('/authenticated', function(){
 });
 
 Route::post('/register', [AuthController::class, 'register']);
+Route::post('/dashRegister', [AuthController::class, 'dashRegister']);
 Route::post('/login', [AuthController::class, 'login']);
 Route::post('/logout', [AuthController::class, 'logout']);
 Route::post('/send_code', [AuthController::class, 'send_code']);
@@ -41,6 +42,7 @@ Route::middleware('auth:sanctum')->group(function () {
 
 Route::get('/countries', [CountryController::class, 'index']);
 Route::get('/users', [AuthController::class, 'users']);
+Route::get('/myCahnces', [ChanceController::class, 'myCahnces']);
 Route::get('/cats', [CatController::class, 'index']);
 Route::get('/chances/{id}', [ChanceController::class, 'index']);
 

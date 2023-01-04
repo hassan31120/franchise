@@ -39,6 +39,24 @@ class ChanceController extends Controller
         }
     }
 
+    public function myCahnces()
+    {
+        $chances = Chance::all();
+        if (count($chances) > 0) {
+            return response()->json([
+                'success' => true,
+                'chances' => ChanceResource::collection($chances)
+            ], 200);
+        } else {
+            return response()->json([
+                'success' => false,
+                'chances' => []
+            ], 404);
+        }
+    }
+
+
+
     public function store(Request $request)
     {
         $data = $request->except('images');

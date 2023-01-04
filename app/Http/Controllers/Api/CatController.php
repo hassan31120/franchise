@@ -31,12 +31,16 @@ class CatController extends Controller
     public function store(Request $request)
     {
         $data = $request->all();
-        $validator = Validator::make($data, [
-            'name' => 'required'
+        // $validator = Validator::make($data, [
+        //     'name' => 'required'
+        // ]);
+        // if ($validator->fails()) {
+        //     return response()->json(['message' => $validator->errors()->first()], 400);
+        // }
+        $request->validate([
+            'name' => 'required',
+            'image' => 'required',
         ]);
-        if ($validator->fails()) {
-            return response()->json(['message' => $validator->errors()->first()], 400);
-        }
         if ($request->hasFile('image')) {
             $file = $request->file('image');
             $path = 'storage/cats/' . date('Y') . '/' . date('m') . '/';

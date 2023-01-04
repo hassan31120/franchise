@@ -32,16 +32,20 @@ class CountryController extends Controller
     public function store(Request $request)
     {
         $data = $request->all();
-        $validator = Validator::make($data, [
+        // $validator = Validator::make($data, [
+        //     'name' => 'required',
+        //     'image' => 'required'
+        // ]);
+        // if ($validator->fails()) {
+        //     return response()->json(['message' => $validator->errors()->first()], 400);
+        // }
+        $request->validate([
             'name' => 'required',
-            'image' => 'required'
+            'image' => 'required',
         ]);
-        if ($validator->fails()) {
-            return response()->json(['message' => $validator->errors()->first()], 400);
-        }
         if ($request->hasFile('image')) {
             $file = $request->file('image');
-            $path = 'storage/partners/' . date('Y') . '/' . date('m') . '/';
+            $path = 'storage/countries/' . date('Y') . '/' . date('m') . '/';
             $name = $path . time() . '-' . $file->getClientOriginalName();
             $file->move($path, $name);
             $data['image'] = $name;
@@ -73,7 +77,7 @@ class CountryController extends Controller
             }
             if ($request->hasFile('image')) {
                 $file = $request->file('image');
-                $path = 'storage/partners/' . date('Y') . '/' . date('m') . '/';
+                $path = 'storage/countries/' . date('Y') . '/' . date('m') . '/';
                 $name = $path . time() . '-' . $file->getClientOriginalName();
                 $file->move($path, $name);
                 $data['image'] = $name;

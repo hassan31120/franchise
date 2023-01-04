@@ -43,6 +43,24 @@ class AuthController extends Controller
         ], 200);
     }
 
+    public function dashRegister(Request $request)
+    {
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required|email|unique:users',
+            'number' => 'required',
+            'password' => 'required',
+            'password_confirmation' => 'required|same:password'
+        ]);
+        $data = $request->all();
+        $data['password'] = Hash::make($data['password']);
+        $user = User::create($data);
+        return response()->json([
+            'success' => true,
+            'user' => $user,
+        ], 200);
+    }
+
     public function login(Request $request)
     {
         $request->validate([
