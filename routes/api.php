@@ -33,13 +33,14 @@ Route::post('/send_code', [AuthController::class, 'send_code']);
 Route::post('/confirm_code/{id}', [AuthController::class, 'confirm_code']);
 Route::post('password_reset', [AuthController::class, 'password_reset']);
 
-Route::middleware('auth:api')->group(function () {
+Route::middleware('auth:sanctum')->group(function () {
     Route::get('/profile', [AuthController::class, 'profile']);
     Route::post('/editData', [AuthController::class, 'editData']);
     Route::post('/change_password', [AuthController::class, 'change_password']);
 });
 
 Route::get('/countries', [CountryController::class, 'index']);
+Route::get('/users', [AuthController::class, 'users']);
 Route::get('/cats', [CatController::class, 'index']);
 Route::get('/chances/{id}', [ChanceController::class, 'index']);
 

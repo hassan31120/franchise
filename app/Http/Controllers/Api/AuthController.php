@@ -38,7 +38,8 @@ class AuthController extends Controller
 
         return response()->json([
             'success' => true,
-            'user' => new UserResource($user)
+            'user' => new UserResource($user),
+            'token' => $user->createToken('medo')->plainTextToken,
         ], 200);
     }
 
@@ -54,7 +55,8 @@ class AuthController extends Controller
         if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
             $user = Auth::user();
             return response()->json([
-                'user' => Auth::user(),
+                'success' => true,
+                'user' => new UserResource(Auth::user()),
                 'token' => $user->createToken('medo')->plainTextToken,
             ], 200);
         }
@@ -67,6 +69,17 @@ class AuthController extends Controller
     public function logout()
     {
         Auth::logout();
+    }
+
+    public function users()
+    {
+        $users = User::all();
+        if (count($users) > 0) {
+            return response()->json([
+                'success' => true,
+                'users' => UserResource::collection($users)
+            ], 200);
+        }
     }
 
     public function profile()

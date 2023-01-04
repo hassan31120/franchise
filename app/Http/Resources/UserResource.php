@@ -20,7 +20,7 @@ class UserResource extends JsonResource
             'email' => $this->email,
             'number' => $this->number,
             'userType' => $this->userType,
-            'token' => $this->createToken('mohammedhassanfranchise')->accessToken,
+            // 'token' => $this->createToken('mohammedhassanfranchise')->accessToken,
         ];
     }
 }

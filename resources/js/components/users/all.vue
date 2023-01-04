@@ -15,64 +15,9 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
+          <tr v-for="user in users" :key="user.id">
             <th scope="row">1</th>
-            <td>محمد حسن</td>
-            <td>01212625993</td>
-            <td>medo@gmail.com</td>
-            <td>مستخدم</td>
-            <td style="position: relative; text-align: center">
-              <i class="fe fe-edit fe-16"></i>
-              <i class="fe fe-trash fe-16" style="position: absolute; right: 5px"></i>
-            </td>
-          </tr>
-          <tr>
-            <th scope="row">2</th>
-            <td>محمد حسن</td>
-            <td>01212625993</td>
-            <td>medo@gmail.com</td>
-            <td>مستخدم</td>
-            <td style="position: relative; text-align: center">
-              <i class="fe fe-edit fe-16"></i>
-              <i class="fe fe-trash fe-16" style="position: absolute; right: 5px"></i>
-            </td>
-          </tr>
-          <tr>
-            <th scope="row">3</th>
-            <td>محمد حسن</td>
-            <td>01212625993</td>
-            <td>medo@gmail.com</td>
-            <td>مستخدم</td>
-            <td style="position: relative; text-align: center">
-              <i class="fe fe-edit fe-16"></i>
-              <i class="fe fe-trash fe-16" style="position: absolute; right: 5px"></i>
-            </td>
-          </tr>
-          <tr>
-            <th scope="row">4</th>
-            <td>محمد حسن</td>
-            <td>01212625993</td>
-            <td>medo@gmail.com</td>
-            <td>مستخدم</td>
-            <td style="position: relative; text-align: center">
-              <i class="fe fe-edit fe-16"></i>
-              <i class="fe fe-trash fe-16" style="position: absolute; right: 5px"></i>
-            </td>
-          </tr>
-          <tr>
-            <th scope="row">5</th>
-            <td>محمد حسن</td>
-            <td>01212625993</td>
-            <td>medo@gmail.com</td>
-            <td>مستخدم</td>
-            <td style="position: relative; text-align: center">
-              <i class="fe fe-edit fe-16"></i>
-              <i class="fe fe-trash fe-16" style="position: absolute; right: 5px"></i>
-            </td>
-          </tr>
-          <tr>
-            <th scope="row">6</th>
-            <td>محمد حسن</td>
+            <td>{{ user.name }}</td>
             <td>01212625993</td>
             <td>medo@gmail.com</td>
             <td>مستخدم</td>
@@ -91,7 +36,24 @@
 export default {
   name: "users",
   data() {
-    return {};
+    return {
+      users: [],
+    };
+  },
+  mounted() {
+    this.fetchUsers();
+  },
+  methods: {
+    async fetchUsers() {
+      axios
+        .get(`api/users`)
+        .then((res) => {
+          this.users = res.data.users;
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
   },
 };
 </script>
