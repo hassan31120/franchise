@@ -14,14 +14,14 @@
         </thead>
         <tbody>
           <tr v-for="(country, index) in countries" :key="country.id">
-            <th scope="row">{{ index + 1 }}</th>
+            <td scope="row">{{ index + 1 }}</td>
             <td>{{ country.name }}</td>
             <td>
               <img :src="country.image" width="100" height="66.72" alt="" />
             </td>
-            <td style="position: relative; text-align: center">
+            <td class="actions">
               <i class="fe fe-edit fe-16"></i>
-              <i class="fe fe-trash fe-16" style="position: absolute; right: 5px"></i>
+              <i class="fe fe-trash fe-16"></i>
             </td>
           </tr>
         </tbody>

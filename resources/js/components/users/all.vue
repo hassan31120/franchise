@@ -21,9 +21,9 @@
             <td>{{ user.number }}</td>
             <td>{{ user.email }}</td>
             <td>{{ user.userType }}</td>
-            <td style="position: relative; text-align: center">
+            <td class="actions">
               <i class="fe fe-edit fe-16"></i>
-              <i class="fe fe-trash fe-16" style="position: absolute; right: 5px"></i>
+              <i class="fe fe-trash fe-16"></i>
             </td>
           </tr>
         </tbody>

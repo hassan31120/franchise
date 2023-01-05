@@ -19,9 +19,9 @@
             <td>
               <img :src="cat.image" width="100" height="70" alt="" />
             </td>
-            <td style="position: relative; text-align: center">
+            <td class="actions">
               <i class="fe fe-edit fe-16"></i>
-              <i class="fe fe-trash fe-16" style="position: absolute; right: 5px"></i>
+              <i class="fe fe-trash fe-16"></i>
             </td>
           </tr>
         </tbody>

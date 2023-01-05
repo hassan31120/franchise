@@ -2,7 +2,26 @@
     font-family: "Cairo", sans-serif;
 }
 
-ul li a:hover{
+ul li a:hover {
     color: #ff7c00 !important;
 }
 
+.container-fluid table tbody .actions {
+    position: relative;
+    text-align: center;
+}
+.container-fluid table tbody .actions .fe-edit {
+    position: absolute;
+    right: 5px;
+}
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+    .container-fluid table tbody .actions .fe-edit{
+        right: -10px;
+    }
+    .container-fluid table tbody .actions .fe-trash{
+        position: absolute;
+        left: -5px;
+    }
+}
