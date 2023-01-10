@@ -77,17 +77,17 @@
             class="dropdown-toggle nav-link"
           >
             <i class="fe fe-layers fe-16"></i>
-            <span class="ml-3 item-text">الأقسام</span>
+            <span class="ml-3 item-text">القطاعات</span>
           </a>
           <ul class="collapse list-unstyled pl-4 w-100" id="categories">
             <li class="nav-item">
               <router-link class="nav-link pl-3" :to="{ name: 'cats' }"
-                ><span class="ml-1 item-text">كل الأقسام</span>
+                ><span class="ml-1 item-text">كل القطاعات</span>
               </router-link>
             </li>
             <li class="nav-item">
               <router-link class="nav-link pl-3" :to="{ name: 'add_cat' }"
-                ><span class="ml-1 item-text">إضافة قسم جديد</span>
+                ><span class="ml-1 item-text">إضافة قطاع جديد</span>
               </router-link>
             </li>
           </ul>
@@ -134,11 +134,12 @@
           </ul>
         </li>
       </ul>
-      <div
-        class="btn-box w-100 mt-4 mb-1"
-        style="background-color: #ff7c00; border-radius: 50px"
-      >
-        <button @click.prevent="logout" class="btn mb-2 btn-lg btn-block text-white">
+      <div class="btn-box w-100 mt-4 mb-1" v-if="log == 1">
+        <button
+          @click.prevent="logout"
+          class="btn mb-2 btn-lg btn-block text-white"
+          style="background-color: #ff7c00; border-radius: 50px"
+        >
           <i class="fe fe-log-out fe-12 mr-2"></i><span class="small">تسجيل الخروج</span>
         </button>
       </div>
@@ -150,12 +151,22 @@
 export default {
   name: "sidebar",
   data() {
-    return {};
+    return {
+      log: "",
+    };
+  },
+  mounted() {
+    this.auth();
   },
   methods: {
     logout() {
       axios.post(`api/logout`).then(() => {
         this.$router.push({ name: "login" });
+      });
+    },
+    auth() {
+      axios.get(`api/authenticated`).then((res) => {
+        this.log = res.data;
       });
     },
   },

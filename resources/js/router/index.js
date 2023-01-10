@@ -9,6 +9,7 @@ import catsPage from "../pages/cats/catsPage.vue";
 import add_catPage from "../pages/cats/add_catPage.vue";
 import chancesPage from "../pages/chances/chancesPage.vue";
 import add_chancePage from "../pages/chances/add_chancePage.vue";
+import show_chancePage from "../pages/chances/show_chancePage.vue";
 import login from "../components/auth/login.vue";
 import notiPage from "../pages/noti/notiPage.vue";
 import error404 from "../components/errors/error404.vue";
@@ -31,7 +32,7 @@ const routes = [
         },
     },
     {
-        path: "/:catchAll(.*)",
+        path: "/:catchAll(.*)*",
         name: "error404",
         component: error404,
     },
@@ -171,6 +172,21 @@ const routes = [
                     next();
                 })
                 .catch((err) => {
+                    return next({ name: "login" });
+                });
+        },
+    },
+    {
+        path: "/show/:id",
+        name: "show_chance",
+        component: show_chancePage,
+        beforeEnter: (to, from, next) => {
+            axios
+                .get(`api/authenticated`)
+                .then(() => {
+                    next();
+                })
+                .catch(() => {
                     return next({ name: "login" });
                 });
         },

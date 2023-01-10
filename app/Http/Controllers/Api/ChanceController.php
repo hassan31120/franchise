@@ -22,20 +22,37 @@ class ChanceController extends Controller
      */
     public function index($id)
     {
-        $country = Country::find($id);
-        $cats = Cat::all();
-        $chances = Chance::where('country_id', $country->id)->get();
-        if (count($chances) > 0) {
-            return response()->json([
-                'success' => true,
-                'cats'  => CatResource::collection($cats),
-                'chances' => ChanceResource::collection($chances)
-            ], 200);
+        if ($id == 0) {
+            $cats = Cat::all();
+            $chances = Chance::all();
+            if (count($chances) > 0) {
+                return response()->json([
+                    'success' => true,
+                    'cats'  => CatResource::collection($cats),
+                    'chances' => ChanceResource::collection($chances)
+                ], 200);
+            } else {
+                return response()->json([
+                    'success' => false,
+                    'chances' => []
+                ], 404);
+            }
         } else {
-            return response()->json([
-                'success' => false,
-                'chances' => []
-            ], 404);
+            $country = Country::find($id);
+            $cats = Cat::all();
+            $chances = Chance::where('country_id', $country->id)->get();
+            if (count($chances) > 0) {
+                return response()->json([
+                    'success' => true,
+                    'cats'  => CatResource::collection($cats),
+                    'chances' => ChanceResource::collection($chances)
+                ], 200);
+            } else {
+                return response()->json([
+                    'success' => false,
+                    'chances' => []
+                ], 404);
+            }
         }
     }
 
@@ -54,8 +71,6 @@ class ChanceController extends Controller
             ], 404);
         }
     }
-
-
 
     public function store(Request $request)
     {
@@ -101,6 +116,22 @@ class ChanceController extends Controller
             'success' => true,
             'chance' => new ChanceResource($chance)
         ], 200);
+    }
+
+    public function show($id)
+    {
+        $chance = Chance::find($id);
+        if ($chance) {
+            return response()->json([
+                'success' => true,
+                'chance' => new ChanceResource($chance)
+            ], 200);
+        } else {
+            return response()->json([
+                'success' => false,
+                'message' => 'there is no chnace'
+            ], 404);
+        }
     }
 
     public function update(Request $request, $id)

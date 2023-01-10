@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Resources\CatResource;
 use App\Http\Resources\CountryResource;
 use App\Models\Cat;
+use App\Models\Chance;
 use App\Models\Country;
 use App\Models\CountryCat;
 use Illuminate\Http\Request;
@@ -16,9 +17,11 @@ class CountryController extends Controller
     public function index()
     {
         $countries = Country::all();
+        $chances = Chance::all();
         if (count($countries) > 0) {
             return response()->json([
                 'success' => true,
+                'Number' => count($chances),
                 'countries' => CountryResource::collection($countries)
             ], 200);
         } else {

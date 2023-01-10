@@ -1,0 +1,200 @@
+<template>
+  <main role="main" class="main-content">
+    <div class="container-fluid">
+      <!-- Title -->
+      <div class="d-flex justify-content-between align-items-center py-3">
+        <h2 class="h5 mb-0"><a href="#" class="text-muted"></a>{{ chance.title }}</h2>
+      </div>
+
+      <!-- Main content -->
+      <div class="row">
+        <div class="col-lg-8">
+          <!-- Details -->
+          <div class="card mb-4">
+            <swiper
+              :spaceBetween="30"
+              :effect="'fade'"
+              :navigation="true"
+              :pagination="{
+                clickable: true,
+              }"
+              :modules="modules"
+              class="mySwiper"
+            >
+              <swiper-slide
+                class="swiper-slide"
+                v-for="image in chance.images"
+                :key="image"
+                ><img :src="image"
+              /></swiper-slide>
+            </swiper>
+          </div>
+          <!-- Payment -->
+          <div class="card mb-4">
+            <div class="card-body">
+              <div class="row">
+                <div class="col-lg-6">
+                  <h3 class="h6">Payment Method</h3>
+                  <p>
+                    Visa -1234 <br />
+                    Total: $169,98
+                    <span class="badge bg-success rounded-pill">PAID</span>
+                  </p>
+                </div>
+                <div class="col-lg-6">
+                  <h3 class="h6">Billing address</h3>
+                  <address>
+                    <strong>John Doe</strong><br />
+                    1355 Market St, Suite 900<br />
+                    San Francisco, CA 94103<br />
+                    <abbr title="Phone">P:</abbr> (123) 456-7890
+                  </address>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4">
+          <!-- Customer Notes -->
+          <div class="card mb-4">
+            <div class="card-body">
+              <h3 class="h6">العنوان</h3>
+              <hr />
+              <p>
+                {{ chance.title }}
+              </p>
+            </div>
+          </div>
+          <div class="card mb-4">
+            <div class="card-body">
+              <h3 class="h6">الوصف</h3>
+              <hr />
+              <p>
+                {{ chance.desc }}
+              </p>
+            </div>
+          </div>
+          <div class="card mb-4">
+            <!-- Shipping information -->
+            <div class="card-body">
+              <h3 class="h6">معلومات مانح الامتياز</h3>
+              <hr />
+              <h3 class="h6">{{ chance.provider }}</h3>
+
+              {{ chance.email }}<br />
+              {{ chance.number }}<br />
+              <a :href="chance.link" target="_blank">Link</a><br />
+              <hr />
+              <h3 class="h6">منافذ الامتياز</h3>
+
+              {{ chance.outlets }}<br />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</template>
+
+<script>
+// Import Swiper Vue.js components
+import { Swiper, SwiperSlide } from "swiper/vue";
+
+// Import Swiper styles
+import "swiper/css";
+
+import "swiper/css/effect-fade";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+
+// import required modules
+import { EffectFade, Navigation, Pagination } from "swiper";
+
+export default {
+  name: "show_chance",
+  components: {
+    Swiper,
+    SwiperSlide,
+  },
+  setup() {
+    return {
+      modules: [EffectFade, Navigation, Pagination],
+    };
+  },
+  data() {
+    return {
+      chance: {},
+      id: this.$route.params.id,
+    };
+  },
+  mounted() {
+    this.fetchChance();
+  },
+  methods: {
+    async fetchChance() {
+      axios
+        .get(`/api/show/${this.id}`)
+        .then((res) => {
+          this.chance = res.data.chance;
+        })
+        .catch(() => {
+          this.$router.push({ name: "error404" });
+        });
+    },
+  },
+};
+</script>
+
+<style scoped>
+.card,
+.mySwiper {
+  box-shadow: 0 20px 27px 0 rgb(0 0 0 / 5%);
+}
+.card,
+.mySwiper {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  word-wrap: break-word;
+  background-color: #fff;
+  background-clip: border-box;
+  border: 0 solid rgba(0, 0, 0, 0.125);
+  border-radius: 1rem;
+}
+.text-reset {
+  --bs-text-opacity: 1;
+  color: inherit !important;
+}
+a {
+  color: #ff7c00;
+  text-decoration: none;
+}
+
+.mySwiper {
+  width: 100%;
+  height: 100%;
+}
+
+.swiper-slide {
+  background-position: center;
+  background-size: cover;
+}
+
+.swiper-slide img {
+  display: block;
+  width: 100%;
+}
+
+@media only screen and (min-width: 600px) {
+  .mySwiper {
+    width: 100%;
+    height: 450px;
+  }
+  .swiper-slide img {
+    display: block;
+    width: 100%;
+    height: 450px;
+  }
+}
+</style>

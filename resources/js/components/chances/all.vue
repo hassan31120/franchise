@@ -17,7 +17,11 @@
         <tbody>
           <tr v-for="(chance, index) in chances" :key="chance.id">
             <th scope="row">{{ index + 1 }}</th>
-            <td>{{ chance.title }}</td>
+            <td>
+              <router-link :to="{ name: 'show_chance', params: { id: chance.id } }">{{
+                chance.title
+              }}</router-link>
+            </td>
             <td>
               <img :src="chance.logo" width="100" height="66.72" alt="" />
             </td>

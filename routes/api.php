@@ -45,6 +45,7 @@ Route::get('/users', [AuthController::class, 'users']);
 Route::get('/myCahnces', [ChanceController::class, 'myCahnces']);
 Route::get('/cats', [CatController::class, 'index']);
 Route::get('/chances/{id}', [ChanceController::class, 'index']);
+Route::get('/show/{id}', [ChanceController::class, 'show']);
 
 Route::post('country/add', [CountryController::class, 'store']);
 Route::post('country/edit/{id}', [CountryController::class, 'update']);
