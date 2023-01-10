@@ -90,7 +90,7 @@ class ChanceController extends Controller
             // 'images' => 'required',
         ]);
         if ($validator->fails()) {
-            return response()->json(['message' => $validator->errors()->first()], 400);
+            return response()->json(['message' => $validator->errors()], 400);
         }
         if ($request->hasFile('logo')) {
             $file = $request->file('logo');

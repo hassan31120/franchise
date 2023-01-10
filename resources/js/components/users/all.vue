@@ -22,8 +22,10 @@
             <td>{{ user.email }}</td>
             <td>{{ user.userType }}</td>
             <td class="actions">
-              <i class="fe fe-edit fe-16"></i>
-              <i class="fe fe-trash fe-16"></i>
+              <button type="button"><i class="fe fe-edit fe-16"></i></button>
+              <button type="button" @click="delUser(user.id)">
+                <i class="fe fe-trash fe-16"></i>
+              </button>
             </td>
           </tr>
         </tbody>
@@ -44,6 +46,26 @@ export default {
     this.fetchUsers();
   },
   methods: {
+    delUser(id) {
+      this.$swal
+        .fire({
+          title: "هل انت متأكد؟",
+          text: "لن تتمكن من إعادة هذه الخطوة!",
+          icon: "warning",
+          showCancelButton: true,
+          confirmButtonColor: "#3085d6",
+          cancelButtonColor: "#d33",
+          confirmButtonText: "نعم إحذف",
+          cancelButtonText: "الغاء",
+        })
+        .then((result) => {
+          if (result.isConfirmed) {
+            axios.post(`api/user/del/${id}`);
+            this.$swal.fire("تم!", "تم الحذف بنجاح", "success");
+            this.fetchUsers();
+          }
+        });
+    },
     async fetchUsers() {
       axios
         .get(`api/users`)

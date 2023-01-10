@@ -28,8 +28,10 @@
             <td>{{ chance.branches }}</td>
             <td>{{ chance.price }}</td>
             <td class="actions">
-              <i class="fe fe-edit fe-16"></i>
-              <i class="fe fe-trash fe-16"></i>
+              <button type="button"><i class="fe fe-edit fe-16"></i></button>
+              <button type="button" @click="delChance(chance.id)">
+                <i class="fe fe-trash fe-16"></i>
+              </button>
             </td>
           </tr>
         </tbody>
@@ -50,6 +52,26 @@ export default {
     this.fetchChance();
   },
   methods: {
+    delChance(id) {
+      this.$swal
+        .fire({
+          title: "هل انت متأكد؟",
+          text: "لن تتمكن من إعادة هذه الخطوة!",
+          icon: "warning",
+          showCancelButton: true,
+          confirmButtonColor: "#3085d6",
+          cancelButtonColor: "#d33",
+          confirmButtonText: "نعم إحذف",
+          cancelButtonText: "الغاء",
+        })
+        .then((result) => {
+          if (result.isConfirmed) {
+            axios.post(`api/chance/del/${id}`);
+            this.$swal.fire("تم!", "تم الحذف بنجاح", "success");
+            this.fetchChance();
+          }
+        });
+    },
     async fetchChance() {
       axios
         .get(`api/myCahnces`)

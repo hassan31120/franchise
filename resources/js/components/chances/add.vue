@@ -202,6 +202,26 @@ export default {
     this.fetchCountries();
   },
   methods: {
+    alert() {
+      var toastMixin = this.$swal.mixin({
+        toast: true,
+        icon: "success",
+        title: "General Title",
+        animation: false,
+        position: "top-right",
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+          toast.addEventListener("mouseenter", this.$swal.stopTimer);
+          toast.addEventListener("mouseleave", this.$swal.resumeTimer);
+        },
+      });
+      toastMixin.fire({
+        animation: true,
+        title: "تم إضافة فرصة الامتياز بنجاح",
+      });
+    },
     async saveForm() {
       axios
         .post(`api/chance/add`, this.form, {
@@ -225,9 +245,11 @@ export default {
             (this.form.country_id = ""),
             (this.form.cat_id = "");
           this.$router.push({ name: "chances" });
+          this.alert();
         })
         .catch((error) => {
-          this.errors = error.response.data.errors;
+          this.errors = error.response.data.message;
+          console.log(error);
         });
     },
 

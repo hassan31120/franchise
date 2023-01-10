@@ -74,6 +74,26 @@ export default {
   },
   mounted() {},
   methods: {
+    alert() {
+      var toastMixin = this.$swal.mixin({
+        toast: true,
+        icon: "success",
+        title: "General Title",
+        animation: false,
+        position: "top-right",
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+          toast.addEventListener("mouseenter", this.$swal.stopTimer);
+          toast.addEventListener("mouseleave", this.$swal.resumeTimer);
+        },
+      });
+      toastMixin.fire({
+        animation: true,
+        title: "تم إضافة القطاع بنجاح",
+      });
+    },
     async saveForm() {
       axios
         .post(`api/cat/add`, this.form, {
@@ -85,6 +105,7 @@ export default {
         .then(() => {
           (this.form.name = ""), (this.form.image = "");
           this.$router.push({ name: "cats" });
+          this.alert();
         })
         .catch((error) => {
           this.errors = error.response.data.errors;

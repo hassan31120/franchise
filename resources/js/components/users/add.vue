@@ -36,21 +36,36 @@
                 </div>
                 <div class="form-group mb-3">
                   <label for="simpleinput">رقم الهاتف</label>
-                  <input type="text" id="simpleinput" class="form-control" v-model="form.number"/>
+                  <input
+                    type="text"
+                    id="simpleinput"
+                    class="form-control"
+                    v-model="form.number"
+                  />
                   <span class="text-danger" v-if="errors.number">{{
                     errors.number[0]
                   }}</span>
                 </div>
                 <div class="form-group mb-3">
                   <label for="example-password">الرقم السري</label>
-                  <input type="password" id="example-password" class="form-control" v-model="form.password" />
+                  <input
+                    type="password"
+                    id="example-password"
+                    class="form-control"
+                    v-model="form.password"
+                  />
                   <span class="text-danger" v-if="errors.password">{{
                     errors.password[0]
                   }}</span>
                 </div>
                 <div class="form-group mb-3">
                   <label for="example-palaceholder">تأكيد الرقم السري</label>
-                  <input type="password" id="example-palaceholder" class="form-control" v-model="form.password_confirmation" />
+                  <input
+                    type="password"
+                    id="example-palaceholder"
+                    class="form-control"
+                    v-model="form.password_confirmation"
+                  />
                   <span class="text-danger" v-if="errors.password_confirmation">{{
                     errors.password_confirmation[0]
                   }}</span>
@@ -97,11 +112,32 @@ export default {
   },
   mounted() {},
   methods: {
+    alert() {
+      var toastMixin = this.$swal.mixin({
+        toast: true,
+        icon: "success",
+        title: "General Title",
+        animation: false,
+        position: "top-right",
+        showConfirmButton: false,
+        timer: 4000,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+          toast.addEventListener("mouseenter", this.$swal.stopTimer);
+          toast.addEventListener("mouseleave", this.$swal.resumeTimer);
+        },
+      });
+      toastMixin.fire({
+        animation: true,
+        title: "تم إضافة العضو بنجاح",
+      });
+    },
     async saveForm() {
       axios
         .post(`api/dashRegister`, this.form)
         .then(() => {
           this.$router.push({ name: "users" });
+          this.alert();
         })
         .catch((error) => {
           this.errors = error.response.data.errors;

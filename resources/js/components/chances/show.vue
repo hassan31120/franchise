@@ -1,11 +1,6 @@
 <template>
   <main role="main" class="main-content">
     <div class="container-fluid">
-      <!-- Title -->
-      <div class="d-flex justify-content-between align-items-center py-3">
-        <h2 class="h5 mb-0"><a href="#" class="text-muted"></a>{{ chance.title }}</h2>
-      </div>
-
       <!-- Main content -->
       <div class="row">
         <div class="col-lg-8">
@@ -34,21 +29,16 @@
             <div class="card-body">
               <div class="row">
                 <div class="col-lg-6">
-                  <h3 class="h6">Payment Method</h3>
+                  <h3 class="h6">العنوان</h3>
                   <p>
-                    Visa -1234 <br />
-                    Total: $169,98
-                    <span class="badge bg-success rounded-pill">PAID</span>
+                    {{ chance.title }}
                   </p>
                 </div>
                 <div class="col-lg-6">
-                  <h3 class="h6">Billing address</h3>
-                  <address>
-                    <strong>John Doe</strong><br />
-                    1355 Market St, Suite 900<br />
-                    San Francisco, CA 94103<br />
-                    <abbr title="Phone">P:</abbr> (123) 456-7890
-                  </address>
+                  <h3 class="h6">الوصف</h3>
+                  <p>
+                    {{ chance.desc }}
+                  </p>
                 </div>
               </div>
             </div>
@@ -58,36 +48,43 @@
           <!-- Customer Notes -->
           <div class="card mb-4">
             <div class="card-body">
-              <h3 class="h6">العنوان</h3>
+              <h3 class="h6">منافذ الامتياز</h3>
               <hr />
               <p>
-                {{ chance.title }}
+                {{ chance.outlets }}
               </p>
             </div>
           </div>
+
           <div class="card mb-4">
-            <div class="card-body">
-              <h3 class="h6">الوصف</h3>
-              <hr />
-              <p>
-                {{ chance.desc }}
-              </p>
-            </div>
-          </div>
-          <div class="card mb-4">
-            <!-- Shipping information -->
             <div class="card-body">
               <h3 class="h6">معلومات مانح الامتياز</h3>
               <hr />
               <h3 class="h6">{{ chance.provider }}</h3>
-
               {{ chance.email }}<br />
               {{ chance.number }}<br />
               <a :href="chance.link" target="_blank">Link</a><br />
-              <hr />
-              <h3 class="h6">منافذ الامتياز</h3>
+            </div>
+          </div>
 
-              {{ chance.outlets }}<br />
+          <div class="card mb-4">
+            <div class="card-body">
+              <h3 class="h6">معلومات الامتياز</h3>
+              <hr />
+              <strong>القطاع</strong> : {{ chance.cat }} <br />
+              <strong>البلد</strong> : {{ chance.country }} <br />
+              <strong>السعر</strong> : {{ chance.price }} <br />
+              <strong>عدد الفروع</strong> : {{ chance.branches }}
+            </div>
+          </div>
+
+          <div class="card mb-4">
+            <div class="card-body">
+              <h3 class="h6">المسؤول عن المتقدمين</h3>
+              <hr />
+              <p>
+                {{ chance.resp }}
+              </p>
             </div>
           </div>
         </div>

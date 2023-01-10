@@ -22,7 +22,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::middleware('auth:sanctum')->get('/authenticated', function(){
+Route::middleware('auth:sanctum')->get('/authenticated', function () {
     return true;
 });
 
@@ -58,3 +58,6 @@ Route::post('cat/del/{id}', [CatController::class, 'destroy']);
 Route::post('chance/add', [ChanceController::class, 'store']);
 Route::post('chance/edit/{id}', [ChanceController::class, 'update']);
 Route::post('chance/del/{id}', [ChanceController::class, 'destroy']);
+
+
+Route::post('user/del/{id}', [AuthController::class, 'delUser']);

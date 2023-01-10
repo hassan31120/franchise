@@ -20,8 +20,10 @@
               <img :src="country.image" width="100" height="66.72" alt="" />
             </td>
             <td class="actions">
-              <i class="fe fe-edit fe-16"></i>
-              <i class="fe fe-trash fe-16"></i>
+              <button type="button"><i class="fe fe-edit fe-16"></i></button>
+              <button type="button" @click="delCountry(country.id)">
+                <i class="fe fe-trash fe-16"></i>
+              </button>
             </td>
           </tr>
         </tbody>
@@ -42,6 +44,26 @@ export default {
     this.fetchCountries();
   },
   methods: {
+    delCountry(id) {
+      this.$swal
+        .fire({
+          title: "هل انت متأكد؟",
+          text: "لن تتمكن من إعادة هذه الخطوة!",
+          icon: "warning",
+          showCancelButton: true,
+          confirmButtonColor: "#3085d6",
+          cancelButtonColor: "#d33",
+          confirmButtonText: "نعم إحذف",
+          cancelButtonText: "الغاء",
+        })
+        .then((result) => {
+          if (result.isConfirmed) {
+            axios.post(`api/country/del/${id}`);
+            this.$swal.fire("تم!", "تم الحذف بنجاح", "success");
+            this.fetchCountries();
+          }
+        });
+    },
     async fetchCountries() {
       axios
         .get(`api/countries`)

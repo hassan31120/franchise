@@ -226,4 +226,21 @@ class AuthController extends Controller
         $user->save();
         return response()->json(['success' => true, 'message' => 'تم إعادة تعيين كلمة المرور بنجاح.'], 200);
     }
+
+    public function delUser($id)
+    {
+        $user = User::find($id);
+        if ($user) {
+            $user->delete();
+            return response()->json([
+                'success' => true,
+                'message' => 'user has been deleted successfully!'
+            ], 200);
+        } else {
+            return response()->json([
+                'success' => false,
+                'message' => 'there is no user to delete!'
+            ], 404);
+        }
+    }
 }

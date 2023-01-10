@@ -11,19 +11,59 @@ ul li a:hover {
     text-align: center;
 }
 .container-fluid table tbody .actions .fe-edit {
-    position: absolute;
     right: 5px;
+}
+
+.container-fluid table tbody .actions button {
+    border: none;
+    background-color: transparent;
+    color: #6c757d;
 }
 
 /* Extra small devices (phones, 600px and down) */
 @media only screen and (max-width: 600px) {
-    .container-fluid table tbody .actions .fe-edit{
-        right: -10px;
+    .container-fluid table tbody .actions .fe-edit {
+        /* position: absolute; */
+        right: -1px;
     }
-    .container-fluid table tbody .actions .fe-trash{
-        position: absolute;
-        left: -5px;
+    .container-fluid table tbody .actions .fe-trash {
+        /* position: absolute; */
+        left: 5px;
+    }
+    ::-webkit-scrollbar {
+        height: 7px !important;
+    }
+
+    td img{
+        width: 75px;
+        height: 50px;
+        object-fit: cover;
+        border-radius: 5px;
     }
 }
 
+@media only screen and (min-width: 600px) {
+    td img{
+        border-radius: 5px;
+    }
+}
 
+::-webkit-scrollbar {
+    width: 7px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #ff7c00;
+    transition: all 2s ease-in-out !important;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #af0128;
+}
