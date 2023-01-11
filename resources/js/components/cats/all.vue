@@ -20,7 +20,9 @@
               <img :src="cat.image" width="100" height="70" alt="" />
             </td>
             <td class="actions">
-              <button type="button"><i class="fe fe-edit fe-16"></i></button>
+              <router-link :to="{ name: 'edit_cat', params: { id: cat.id } }">
+                <button type="button"><i class="fe fe-edit fe-16"></i></button
+              ></router-link>
               <button type="button" @click="delCat(cat.id)">
                 <i class="fe fe-trash fe-16"></i>
               </button>

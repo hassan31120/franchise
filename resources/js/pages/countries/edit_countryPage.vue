@@ -2,17 +2,17 @@
   <div class="wrapper">
     <navbar />
     <sidebar />
-    <show_chance />
+    <edit_country />
   </div>
 </template>
 
 <script>
 import navbar from "../../components/layouts/navbar.vue";
 import sidebar from "../../components/layouts/sidebar.vue";
-import show_chance from "../../components/chances/show.vue";
+import edit_country from "../../components/countries/edit.vue";
 export default {
-  name: "show_chancePage",
-  components: { navbar, sidebar, show_chance },
+  name: "edit_countryPage",
+  components: { navbar, sidebar, edit_country },
 };
 </script>
 

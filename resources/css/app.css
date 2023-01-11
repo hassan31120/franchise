@@ -2,8 +2,22 @@
     font-family: "Cairo", sans-serif;
 }
 
+body{
+    overflow-x: hidden;
+}
+
 ul li a:hover {
     color: #ff7c00 !important;
+}
+
+td a {
+    text-decoration: none;
+    color: #6c757d;
+}
+
+td a:hover {
+    color: #ff7c00 !important;
+    text-decoration: none;
 }
 
 .container-fluid table tbody .actions {
@@ -34,7 +48,7 @@ ul li a:hover {
         height: 7px !important;
     }
 
-    td img{
+    td img {
         width: 75px;
         height: 50px;
         object-fit: cover;
@@ -43,7 +57,7 @@ ul li a:hover {
 }
 
 @media only screen and (min-width: 600px) {
-    td img{
+    td img {
         border-radius: 5px;
     }
 }

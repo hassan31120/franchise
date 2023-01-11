@@ -2,17 +2,17 @@
   <div class="wrapper">
     <navbar />
     <sidebar />
-    <show_chance />
+    <edit_cat />
   </div>
 </template>
 
 <script>
 import navbar from "../../components/layouts/navbar.vue";
 import sidebar from "../../components/layouts/sidebar.vue";
-import show_chance from "../../components/chances/show.vue";
+import edit_cat from "../../components/cats/edit.vue";
 export default {
-  name: "show_chancePage",
-  components: { navbar, sidebar, show_chance },
+  name: "edit_catPage",
+  components: { navbar, sidebar, edit_cat },
 };
 </script>
 

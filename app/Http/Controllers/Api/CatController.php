@@ -31,12 +31,6 @@ class CatController extends Controller
     public function store(Request $request)
     {
         $data = $request->all();
-        // $validator = Validator::make($data, [
-        //     'name' => 'required'
-        // ]);
-        // if ($validator->fails()) {
-        //     return response()->json(['message' => $validator->errors()->first()], 400);
-        // }
         $request->validate([
             'name' => 'required',
             'image' => 'required',
@@ -62,17 +56,30 @@ class CatController extends Controller
         ], 200);
     }
 
+    public function show($id)
+    {
+        $cat = Cat::find($id);
+        if ($cat) {
+            return response()->json([
+                'success' => true,
+                'cat' => new CatResource($cat)
+            ], 200);
+        } else {
+            return response()->json([
+                'success' => false,
+                'country' => []
+            ], 404);
+        }
+    }
+
     public function update(Request $request, $id)
     {
         $cat = Cat::find($id);
         if ($cat) {
             $data = $request->all();
-            $validator = Validator::make($data, [
-                'name' => 'required'
+            $request->validate([
+                'name' => 'required',
             ]);
-            if ($validator->fails()) {
-                return response()->json(['message' => $validator->errors()->first()], 400);
-            }
             if ($request->hasFile('image')) {
                 $file = $request->file('image');
                 $path = 'storage/cats/' . date('Y') . '/' . date('m') . '/';

@@ -12,13 +12,17 @@
             <div class="row">
               <div class="col-md-6 align-self-center">
                 <div class="form-group mb-3">
-                  <label for="simpleinput">العنوان</label>
+                  <label for="title">العنوان</label>
                   <input
                     type="text"
-                    id="simpleinput"
+                    id="title"
                     class="form-control"
                     v-model="form.title"
+                    required
                   />
+                  <span class="text-danger" v-if="errors.title">{{
+                    errors.title[0]
+                  }}</span>
                 </div>
                 <div class="form-group mb-3">
                   <label for="desc">الوصف</label>
@@ -29,118 +33,157 @@
                     rows="8"
                     class="form-control"
                     v-model="form.desc"
+                    required
                   ></textarea>
+                  <span class="text-danger" v-if="errors.desc">{{ errors.desc[0] }}</span>
                 </div>
                 <div class="form-group mb-3">
-                  <label for="example-email">اللوجو</label>
+                  <label for="logo">اللوجو</label>
                   <input
                     type="file"
-                    id="example-email"
-                    name="example-email"
+                    id="logo"
+                    name="logo"
                     class="form-control"
                     ref="logo"
                     @change="selectLogo"
+                    required
                   />
+                  <span class="text-danger" v-if="errors.logo">{{ errors.logo[0] }}</span>
                 </div>
                 <div class="form-group mb-3">
-                  <label for="simpleinput">عدد الفروع</label>
+                  <label for="branches">عدد الفروع</label>
                   <input
                     type="text"
-                    id="simpleinput"
+                    id="branches"
                     class="form-control"
                     v-model="form.branches"
+                    required
                   />
+                  <span class="text-danger" v-if="errors.branches">{{
+                    errors.branches[0]
+                  }}</span>
                 </div>
                 <div class="form-group mb-3">
-                  <label for="simpleinput">منافذ الامتياز</label>
+                  <label for="outlets">منافذ الامتياز</label>
                   <input
                     type="text"
-                    id="simpleinput"
+                    id="outlets"
                     class="form-control"
                     v-model="form.outlets"
+                    required
                   />
+                  <span class="text-danger" v-if="errors.outlets">{{
+                    errors.outlets[0]
+                  }}</span>
                 </div>
                 <div class="form-group mb-3">
-                  <label for="simpleinput">القسم</label>
-                  <select v-model="form.cat_id" class="form-control">
+                  <label for="cat_id">القسم</label>
+                  <select v-model="form.cat_id" class="form-control" id="cat_id" required>
                     <option :value="cat.id" v-for="cat in cats" :key="cat.id">
                       {{ cat.name }}
                     </option>
                   </select>
+                  <span class="text-danger" v-if="errors.cat_id">{{
+                    errors.cat_id[0]
+                  }}</span>
                 </div>
               </div>
               <!-- /.col -->
               <div class="col-md-6">
                 <!-- <img src="@/assets/UsabilityTesting.gif" alt="" /> -->
                 <div class="form-group mb-3">
-                  <label for="simpleinput">معلومات مانح الإمتياز</label>
+                  <label for="provider">معلومات مانح الإمتياز</label>
                   <input
                     type="text"
-                    id="simpleinput"
+                    id="provider"
                     class="form-control"
                     v-model="form.provider"
+                    required
                   />
+                  <span class="text-danger" v-if="errors.provider">{{
+                    errors.provider[0]
+                  }}</span>
                 </div>
                 <div class="form-group mb-3">
-                  <label for="simpleinput">الرقم</label>
+                  <label for="number">الرقم</label>
                   <input
                     type="text"
-                    id="simpleinput"
+                    id="number"
                     class="form-control"
                     v-model="form.number"
+                    required
                   />
+                  <span class="text-danger" v-if="errors.number">{{
+                    errors.number[0]
+                  }}</span>
                 </div>
                 <div class="form-group mb-3">
-                  <label for="simpleinput">الإيميل</label>
+                  <label for="email">الإيميل</label>
                   <input
                     type="text"
-                    id="simpleinput"
+                    id="email"
                     class="form-control"
                     v-model="form.email"
+                    required
                   />
+                  <span class="text-danger" v-if="errors.email">{{
+                    errors.email[0]
+                  }}</span>
                 </div>
                 <div class="form-group mb-3">
-                  <label for="simpleinput">اللينك</label>
+                  <label for="link">اللينك</label>
                   <input
                     type="text"
-                    id="simpleinput"
+                    id="link"
                     class="form-control"
                     v-model="form.link"
+                    required
                   />
+                  <span class="text-danger" v-if="errors.link">{{ errors.link[0] }}</span>
                 </div>
                 <div class="form-group mb-3">
-                  <label for="example-email">الصور</label>
+                  <label for="images">الصور</label>
                   <input
                     type="file"
-                    id="example-email"
-                    name="example-email"
+                    id="images"
+                    name="images"
                     class="form-control"
                     ref="images"
                     @change="selectImages"
                     multiple
+                    required
                   />
+                  <span class="text-danger" v-if="errors.images">{{
+                    errors.images[0]
+                  }}</span>
                 </div>
                 <div class="form-group mb-3">
-                  <label for="simpleinput">المسؤول عن المتقدمين</label>
-                  <input
-                    type="text"
-                    id="simpleinput"
-                    class="form-control"
-                    v-model="form.resp"
-                  />
+                  <label for="resp">المسؤول عن المتقدمين</label>
+                  <input type="text" id="resp" class="form-control" v-model="form.resp" />
+                  <span class="text-danger" v-if="errors.title">{{
+                    errors.title[0]
+                  }}</span>
                 </div>
                 <div class="form-group mb-3">
-                  <label for="simpleinput">السعر</label>
+                  <label for="price">السعر</label>
                   <input
                     type="text"
-                    id="simpleinput"
+                    id="price"
                     class="form-control"
                     v-model="form.price"
                   />
+                  <span class="text-danger" v-if="errors.price">{{
+                    errors.price[0]
+                  }}</span>
                 </div>
                 <div class="form-group mb-3">
-                  <label for="simpleinput">البلد</label>
-                  <select v-model="form.country_id" class="form-control">
+                  <label for="country_id">البلد</label>
+                  <select
+                    v-model="form.country_id"
+                    class="form-control"
+                    id="country_id"
+                    required
+                  >
                     <option
                       :value="country.id"
                       v-for="country in countries"
@@ -149,6 +192,9 @@
                       {{ country.name }}
                     </option>
                   </select>
+                  <span class="text-danger" v-if="errors.country_id">{{
+                    errors.country_id[0]
+                  }}</span>
                 </div>
               </div>
               <button
@@ -249,7 +295,7 @@ export default {
         })
         .catch((error) => {
           this.errors = error.response.data.message;
-          console.log(error);
+          console.log(error.response.data.message);
         });
     },
 

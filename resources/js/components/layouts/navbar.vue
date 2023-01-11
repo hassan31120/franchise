@@ -148,14 +148,14 @@
     <!-- <button type="button" class="navbar-toggler text-muted mt-2 p-0 mr-3 collapseSidebar">
       <i class="fe fe-menu navbar-toggler-icon"></i>
     </button> -->
-    <form class="form-inline mr-auto searchform text-muted">
+    <!-- <form class="form-inline mr-auto searchform text-muted">
       <input
         class="form-control mr-sm-2 bg-transparent border-0 pl-4 text-muted"
         type="search"
         placeholder="Type something..."
         aria-label="Search"
       />
-    </form>
+    </form> -->
     <ul class="nav">
       <!-- <li class="nav-item">
         <a class="nav-link text-muted my-2" href="#" id="modeSwitcher" data-mode="light">
@@ -183,10 +183,10 @@
           <span class="dot dot-md bg-success"></span>
         </a>
       </li> -->
-      <li class="nav-item dropdown">
+      <!-- <li class="nav-item dropdown">
         <i class="fe fe-user"></i>
         {{ this.user.name }}
-      </li>
+      </li> -->
     </ul>
   </nav>
 </template>
@@ -210,7 +210,7 @@ export default {
           this.user = res.data;
         })
         .catch(() => {
-          this.$router.push({ name: "error500   " });
+          this.$router.push({ name: "error500" });
         });
     },
   },

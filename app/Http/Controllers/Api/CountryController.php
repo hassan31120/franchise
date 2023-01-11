@@ -35,13 +35,6 @@ class CountryController extends Controller
     public function store(Request $request)
     {
         $data = $request->all();
-        // $validator = Validator::make($data, [
-        //     'name' => 'required',
-        //     'image' => 'required'
-        // ]);
-        // if ($validator->fails()) {
-        //     return response()->json(['message' => $validator->errors()->first()], 400);
-        // }
         $request->validate([
             'name' => 'required',
             'image' => 'required',
@@ -65,6 +58,22 @@ class CountryController extends Controller
             'success' => true,
             'country' => new CountryResource($country)
         ], 200);
+    }
+
+    public function show($id)
+    {
+        $country = Country::find($id);
+        if ($country) {
+            return response()->json([
+                'success' => true,
+                'country' => new CountryResource($country)
+            ], 200);
+        } else {
+            return response()->json([
+                'success' => false,
+                'country' => []
+            ], 404);
+        }
     }
 
     public function update(Request $request, $id)

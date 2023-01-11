@@ -20,7 +20,9 @@
               <img :src="country.image" width="100" height="66.72" alt="" />
             </td>
             <td class="actions">
-              <button type="button"><i class="fe fe-edit fe-16"></i></button>
+              <router-link :to="{ name: 'edit_country', params: { id: country.id } }">
+                <button type="button"><i class="fe fe-edit fe-16"></i></button
+              ></router-link>
               <button type="button" @click="delCountry(country.id)">
                 <i class="fe fe-trash fe-16"></i>
               </button>

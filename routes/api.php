@@ -61,3 +61,6 @@ Route::post('chance/del/{id}', [ChanceController::class, 'destroy']);
 
 
 Route::post('user/del/{id}', [AuthController::class, 'delUser']);
+
+Route::get('country/show/{id}', [CountryController::class, 'show']);
+Route::get('cat/show/{id}', [CatController::class, 'show']);
