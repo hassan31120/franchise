@@ -2,7 +2,7 @@
     font-family: "Cairo", sans-serif;
 }
 
-body{
+body {
     overflow-x: hidden;
 }
 
@@ -80,4 +80,18 @@ td a:hover {
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
     background: #af0128;
+}
+
+.delImage button {
+    border: none;
+    background-color: #fff;
+    padding:0px;
+    position: absolute;
+    margin-right: -16px;
+    font-weight: 900 !important;
+    height: 15px;
+}
+
+.delImage img {
+    border-radius: 5px;
 }

@@ -28,7 +28,9 @@
             <td>{{ chance.branches }}</td>
             <td>{{ chance.price }}</td>
             <td class="actions">
-              <button type="button"><i class="fe fe-edit fe-16"></i></button>
+              <router-link :to="{ name: 'edit_chance', params: { id: chance.id } }">
+                <button type="button"><i class="fe fe-edit fe-16"></i></button
+              ></router-link>
               <button type="button" @click="delChance(chance.id)">
                 <i class="fe fe-trash fe-16"></i>
               </button>

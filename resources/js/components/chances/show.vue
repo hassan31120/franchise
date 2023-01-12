@@ -20,7 +20,7 @@
                 class="swiper-slide"
                 v-for="image in chance.images"
                 :key="image"
-                ><img :src="image"
+                ><img :src="image.image"
               /></swiper-slide>
             </swiper>
           </div>

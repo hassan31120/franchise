@@ -64,3 +64,7 @@ Route::post('user/del/{id}', [AuthController::class, 'delUser']);
 
 Route::get('country/show/{id}', [CountryController::class, 'show']);
 Route::get('cat/show/{id}', [CatController::class, 'show']);
+Route::get('user/show/{id}', [AuthController::class, 'show']);
+Route::post('user/edit/{id}', [AuthController::class, 'update']);
+
+Route::post('chanceImage/del/{id}', [ChanceController::class, 'delImage']);

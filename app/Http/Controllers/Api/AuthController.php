@@ -243,4 +243,43 @@ class AuthController extends Controller
             ], 404);
         }
     }
+
+    public function show($id)
+    {
+        $user = User::find($id);
+        if ($user) {
+            return response()->json([
+                'success' => true,
+                'user' => new UserResource($user)
+            ], 200);
+        } else {
+            return response()->json([
+                'success' => false,
+                'user' => []
+            ], 404);
+        }
+    }
+
+    public function update(Request $request, $id)
+    {
+        $user = User::find($id);
+        if ($user) {
+            $data = $request->all();
+            $request->validate([
+                'name' => 'required',
+                'email' => 'required|email|unique:users,email,' . $user->id,
+                'number' => 'required',
+            ]);
+            $user->update($data);
+            return response()->json([
+                'success' => true,
+                'user' => new UserResource($user)
+            ], 200);
+        } else {
+            return response()->json([
+                'success' => false,
+                'message' => 'there is no user!'
+            ], 404);
+        }
+    }
 }

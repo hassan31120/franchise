@@ -103,7 +103,7 @@ export default {
           },
         })
         .then(() => {
-          (this.form.name = ""), (this.form.image = "");
+          (this.form.name = ""), (this.form.image = ""), (this.$refs.file.value = null);
           this.$router.push({ name: "cats" });
           this.alert();
         })

@@ -1,7 +1,7 @@
 <template>
   <main role="main" class="main-content">
     <div class="container-fluid">
-      <h2 class="h5 page-title pb-5">إضافة بلد جديد</h2>
+      <!-- <h2 class="h5 page-title pb-5">إضافة بلد جديد</h2> -->
 
       <form @submit.prevent="updateForm()">
         <div class="card shadow mb-4">

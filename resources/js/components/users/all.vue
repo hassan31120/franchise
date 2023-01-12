@@ -22,7 +22,9 @@
             <td>{{ user.email }}</td>
             <td>{{ user.userType }}</td>
             <td class="actions">
-              <button type="button"><i class="fe fe-edit fe-16"></i></button>
+              <router-link :to="{ name: 'edit_user', params: { id: user.id } }">
+                <button type="button"><i class="fe fe-edit fe-16"></i></button
+              ></router-link>
               <button type="button" @click="delUser(user.id)">
                 <i class="fe fe-trash fe-16"></i>
               </button>

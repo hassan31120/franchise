@@ -72,6 +72,23 @@ class ChanceController extends Controller
         }
     }
 
+    public function delImage($id)
+    {
+        $image = ChanceImage::find($id);
+        if ($image) {
+            $image->delete();
+            return response()->json([
+                'success' => true,
+                'message' => 'image has been deleted successfully',
+            ], 200);
+        } else {
+            return response()->json([
+                'success' => false,
+                'message' => 'there is no image to delete!',
+            ], 404);
+        }
+    }
+
     public function store(Request $request)
     {
         $data = $request->except('images');

@@ -67,7 +67,7 @@ class CatController extends Controller
         } else {
             return response()->json([
                 'success' => false,
-                'country' => []
+                'cat' => []
             ], 404);
         }
     }
@@ -90,7 +90,7 @@ class CatController extends Controller
             $cat->update($data);
             return response()->json([
                 'success' => true,
-                'country' => new CatResource($cat)
+                'cat' => new CatResource($cat)
             ], 200);
         } else {
             return response()->json([

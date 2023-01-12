@@ -1,12 +1,12 @@
 <template>
   <main role="main" class="main-content">
     <div class="container-fluid">
-      <!-- <h2 class="h5 page-title pb-5">إضافة قسم جديد</h2> -->
+      <!-- <h2 class="h5 page-title pb-5">إضافة عضو جديد</h2> -->
 
       <form @submit.prevent="saveForm">
         <div class="card shadow mb-4">
           <div class="card-header">
-            <strong class="card-title">إضافةجديد</strong>
+            <strong class="card-title">تعديل العضو</strong>
           </div>
           <div class="card-body">
             <div class="row">
@@ -17,20 +17,34 @@
                     type="text"
                     id="simpleinput"
                     class="form-control"
-                    v-model="this.form.name"
-                    required
+                    v-model="form.name"
                   />
+                  <span class="text-danger" v-if="errors.name">{{ errors.name[0] }}</span>
                 </div>
                 <div class="form-group mb-3">
-                  <label for="example-email">الصورة</label>
+                  <label for="example-email">الإيميل</label>
                   <input
-                    type="file"
+                    type="email"
                     id="example-email"
                     name="example-email"
                     class="form-control"
-                    ref="file"
-                    @change="selectFile"
+                    v-model="form.email"
                   />
+                  <span class="text-danger" v-if="errors.email">{{
+                    errors.email[0]
+                  }}</span>
+                </div>
+                <div class="form-group mb-3">
+                  <label for="simpleinput">رقم الهاتف</label>
+                  <input
+                    type="text"
+                    id="simpleinput"
+                    class="form-control"
+                    v-model="form.number"
+                  />
+                  <span class="text-danger" v-if="errors.number">{{
+                    errors.number[0]
+                  }}</span>
                 </div>
                 <button
                   type="submit"
@@ -47,7 +61,7 @@
               </div>
               <!-- /.col -->
               <div class="col-md-6">
-                <img :src="this.form.image" class="img-thumbnail" alt="" />
+                <img src="@/assets/signup.gif" alt="" />
               </div>
             </div>
           </div>
@@ -59,31 +73,22 @@
 
 <script>
 export default {
-  name: "edit_cat",
+  name: "edit_user",
   data() {
     return {
       form: {
         name: "",
-        image: "",
+        email: "",
+        number: "",
       },
       errors: [],
       id: this.$route.params.id,
     };
   },
   mounted() {
-    this.fetchCategory();
+    this.user();
   },
   methods: {
-    async fetchCategory() {
-      axios
-        .get(`/api/cat/show/${this.id}`)
-        .then((res) => {
-          this.form = res.data.cat;
-        })
-        .catch(() => {
-          this.$router.push({ name: "error404" });
-        });
-    },
     alert() {
       var toastMixin = this.$swal.mixin({
         toast: true,
@@ -92,7 +97,7 @@ export default {
         animation: false,
         position: "top-right",
         showConfirmButton: false,
-        timer: 3000,
+        timer: 4000,
         timerProgressBar: true,
         didOpen: (toast) => {
           toast.addEventListener("mouseenter", this.$swal.stopTimer);
@@ -101,28 +106,30 @@ export default {
       });
       toastMixin.fire({
         animation: true,
-        title: "تم تعديل القطاع بنجاح",
+        title: "تم تعديل العضو بنجاح",
       });
+    },
+    async user() {
+      axios
+        .get(`/api/user/show/${this.id}`)
+        .then((res) => {
+          this.form = res.data.user;
+        })
+        .catch(() => {
+          this.$router.push({ name: "error404" });
+        });
     },
     async saveForm() {
       axios
-        .post(`/api/cat/edit/${this.id}`, this.form, {
-          headers: {
-            Accept: "application/json",
-            "Content-Type": "multipart/form-data",
-          },
-        })
+        .post(`/api/user/edit/${this.id}`, this.form)
         .then(() => {
-          this.fetchCategory();
+          this.user();
           this.alert();
+          this.errors = [];
         })
         .catch((error) => {
-          console.log(error);
+          this.errors = error.response.data.errors;
         });
-    },
-
-    selectFile() {
-      this.form.image = this.$refs.file.files[0];
     },
   },
 };

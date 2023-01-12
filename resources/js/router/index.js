@@ -3,6 +3,7 @@ import axios from "axios";
 import homePage from "../pages/HomePage.vue";
 import usersPage from "../pages/usersPage.vue";
 import add_userPage from "../pages/users/add_userPage.vue";
+import edit_userPage from "../pages/users/edit_userPage.vue";
 import countriesPage from "../pages/countries/countriesPage.vue";
 import add_countryPage from "../pages/countries/add_countryPage.vue";
 import edit_countryPage from "../pages/countries/edit_countryPage.vue";
@@ -11,6 +12,7 @@ import add_catPage from "../pages/cats/add_catPage.vue";
 import edit_catPage from "../pages/cats/edit_catPage.vue";
 import chancesPage from "../pages/chances/chancesPage.vue";
 import add_chancePage from "../pages/chances/add_chancePage.vue";
+import edit_chancePage from "../pages/chances/edit_chancePage.vue";
 import show_chancePage from "../pages/chances/show_chancePage.vue";
 import login from "../components/auth/login.vue";
 import notiPage from "../pages/noti/notiPage.vue";
@@ -194,6 +196,21 @@ const routes = [
         },
     },
     {
+        path: "/edit_chance/:id",
+        name: "edit_chance",
+        component: edit_chancePage,
+        beforeEnter: (to, from, next) => {
+            axios
+                .get(`api/authenticated`)
+                .then(() => {
+                    next();
+                })
+                .catch(() => {
+                    return next({ name: "login" });
+                });
+        },
+    },
+    {
         path: "/edit_country/:id",
         name: "edit_country",
         component: edit_countryPage,
@@ -212,6 +229,21 @@ const routes = [
         path: "/edit_cat/:id",
         name: "edit_cat",
         component: edit_catPage,
+        beforeEnter: (to, from, next) => {
+            axios
+                .get(`api/authenticated`)
+                .then(() => {
+                    next();
+                })
+                .catch(() => {
+                    return next({ name: "login" });
+                });
+        },
+    },
+    {
+        path: "/edit_user/:id",
+        name: "edit_user",
+        component: edit_userPage,
         beforeEnter: (to, from, next) => {
             axios
                 .get(`api/authenticated`)
