@@ -32,6 +32,8 @@ class ChanceResource extends JsonResource
             'cat_id' => (int)$this->cat_id,
             'country_id' => (int)$this->country_id,
             'images' => NewChanceImageResource::collection($this->images),
+            'imagess' => ChanceImageResource::collection($this->images),
+            'user_favs' => count($this->users)
         ];
     }
 }

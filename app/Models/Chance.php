@@ -21,4 +21,9 @@ class Chance extends Model
     {
         return $this->belongsTo(Country::class, 'country_id');
     }
+
+    public function users()
+    {
+        return $this->belongsToMany(User::class, 'favourites', 'chance_id', 'user_id');
+    }
 }

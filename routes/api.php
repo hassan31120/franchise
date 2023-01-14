@@ -4,6 +4,7 @@ use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\CatController;
 use App\Http\Controllers\Api\ChanceController;
 use App\Http\Controllers\Api\CountryController;
+use App\Http\Controllers\Api\FavouriteController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -39,6 +40,8 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/profile', [AuthController::class, 'profile']);
     Route::post('/editData', [AuthController::class, 'editData']);
     Route::post('/change_password', [AuthController::class, 'change_password']);
+    Route::get('/userFavs', [FavouriteController::class, 'userFavs']);
+    Route::post('/add_to_favs/{id}', [FavouriteController::class, 'add_to_favs']);
 });
 
 Route::get('/countries', [CountryController::class, 'index']);
