@@ -79,12 +79,11 @@ export default {
   methods: {
     saveForm() {
       axios
-        .post(`api/login`, this.form)
+        .post(`api/dashLogin`, this.form)
         .then(() => {
           this.$router.push({ name: "home" });
         })
         .catch((error) => {
-          console.log(error);
           this.errors = error.response.data;
         });
     },

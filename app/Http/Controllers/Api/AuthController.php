@@ -11,6 +11,7 @@ use App\Http\Resources\UserResource;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Notification;
 use App\Notifications\Passwordreset;
+use Carbon\Carbon;
 
 class AuthController extends Controller
 {
@@ -22,6 +23,7 @@ class AuthController extends Controller
             'number' => 'required|numeric',
             'password' => 'required',
             'password_confirmation' => 'required|same:password',
+            'push_token' => 'required',
         ]);
 
         if ($validator->fails()) {
@@ -33,6 +35,7 @@ class AuthController extends Controller
 
         $input = $request->all();
         $input['password'] = Hash::make($input['password']);
+        $input['age'] = Carbon::parse($input['date_of_birth'])->age;
         $user = User::create($input);
         $user['userType'] = "user";
 
@@ -66,6 +69,32 @@ class AuthController extends Controller
         $request->validate([
             'email' => 'required|email',
             'password' => 'required',
+            'push_token' => 'required',
+        ]);
+
+        $data = $request->all();
+
+        if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
+            $user = Auth::user();
+            $user->push_token = $data['push_token'];
+            $user->save();
+            return response()->json([
+                'success' => true,
+                'user' => new UserResource(Auth::user()),
+                'token' => $user->createToken('medo')->plainTextToken,
+            ], 200);
+        }
+
+        return response()->json([
+            'password' => ['تحقق من الإيميل والرقم السري!']
+        ], 404);
+    }
+
+    public function dashLogin(Request $request)
+    {
+        $request->validate([
+            'email' => 'required|email',
+            'password' => 'required',
         ]);
 
         $data = $request->all();
@@ -75,7 +104,6 @@ class AuthController extends Controller
             return response()->json([
                 'success' => true,
                 'user' => new UserResource(Auth::user()),
-                'token' => $user->createToken('medo')->plainTextToken,
             ], 200);
         }
 

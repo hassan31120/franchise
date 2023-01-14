@@ -29,6 +29,7 @@ Route::middleware('auth:sanctum')->get('/authenticated', function () {
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/dashRegister', [AuthController::class, 'dashRegister']);
 Route::post('/login', [AuthController::class, 'login']);
+Route::post('/dashLogin', [AuthController::class, 'dashLogin']);
 Route::post('/logout', [AuthController::class, 'logout']);
 Route::post('/send_code', [AuthController::class, 'send_code']);
 Route::post('/confirm_code/{id}', [AuthController::class, 'confirm_code']);

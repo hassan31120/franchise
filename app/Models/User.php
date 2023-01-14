@@ -22,7 +22,12 @@ class User extends Authenticatable
         'email',
         'password',
         'number',
-        'userType'
+        'userType',
+        'push_token',
+        'noti_image',
+        'gender',
+        'date_of_birth',
+        'age'
     ];
 
     /**
