@@ -35,7 +35,9 @@ class AuthController extends Controller
 
         $input = $request->all();
         $input['password'] = Hash::make($input['password']);
-        $input['age'] = Carbon::parse($input['date_of_birth'])->age;
+        if (isset($input['date_of_birth'])) {
+            $input['age'] = Carbon::parse($input['date_of_birth'])->age;
+        }
         $user = User::create($input);
         $user['userType'] = "user";
 
