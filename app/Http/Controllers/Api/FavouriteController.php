@@ -62,4 +62,37 @@ class FavouriteController extends Controller
             ], 404);
         }
     }
+
+    public function del_fav($id)
+    {
+        $user = Auth::user();
+        if ($user) {
+            $chance = Chance::find($id);
+            if ($chance) {
+                $fav = Favourite::where('user_id', $user->id)->where('chance_id', $chance->id)->first();
+                if (isset($fav)) {
+                    $fav->delete();
+                    return response()->json([
+                        'success' => true,
+                        'msg' => 'chance has been deleted from favs successfully'
+                    ], 200);
+                } else {
+                    return response()->json([
+                        'success' => false,
+                        'msg' => 'this chance is not a favourite for this user'
+                    ], 404);
+                }
+            } else {
+                return response()->json([
+                    'success' => false,
+                    'msg' => 'there is no chance'
+                ], 404);
+            }
+        } else {
+            return response()->json([
+                'success' => false,
+                'msg' => 'there is no user'
+            ], 404);
+        }
+    }
 }

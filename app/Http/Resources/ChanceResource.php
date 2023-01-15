@@ -33,7 +33,14 @@ class ChanceResource extends JsonResource
             'country_id' => (int)$this->country_id,
             'images' => NewChanceImageResource::collection($this->images),
             'imagess' => ChanceImageResource::collection($this->images),
-            'user_favs' => count($this->users)
+            'user_favs' => count($this->users),
+            'is_favourite' => $this->when(auth('sanctum')->check(), function () {
+                if (count($this->isFavorited) > 0) {
+                    return 1;
+                } else {
+                    return 0;
+                }
+            }),
         ];
     }
 }
