@@ -1,10 +1,12 @@
 <?php
 
 use App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\Api\BannerController;
 use App\Http\Controllers\Api\CatController;
 use App\Http\Controllers\Api\ChanceController;
 use App\Http\Controllers\Api\CountryController;
 use App\Http\Controllers\Api\FavouriteController;
+use App\Http\Controllers\Api\NotiController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -73,3 +75,10 @@ Route::get('user/show/{id}', [AuthController::class, 'show']);
 Route::post('user/edit/{id}', [AuthController::class, 'update']);
 
 Route::post('chanceImage/del/{id}', [ChanceController::class, 'delImage']);
+
+Route::get('/banners', [BannerController::class, 'index']);
+Route::post('/banner/add', [BannerController::class, 'store']);
+Route::post('/banner/edit/{id}', [BannerController::class, 'update']);
+Route::post('/banner/del/{id}', [BannerController::class, 'destroy']);
+
+Route::post('/push', [NotiController::class, 'push']);
