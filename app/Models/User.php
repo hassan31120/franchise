@@ -53,4 +53,9 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(Chance::class, 'favourites', 'user_id', 'chance_id');
     }
+
+    public function clicks()
+    {
+        return $this->belongsToMany(Chance::class, 'clicks', 'user_id', 'chance_id')->withTimestamps();
+    }
 }

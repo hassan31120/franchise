@@ -7,6 +7,7 @@ use App\Http\Controllers\Api\ChanceController;
 use App\Http\Controllers\Api\CountryController;
 use App\Http\Controllers\Api\FavouriteController;
 use App\Http\Controllers\Api\NotiController;
+use App\Http\Controllers\Api\SettingController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -82,3 +83,6 @@ Route::post('/banner/edit/{id}', [BannerController::class, 'update']);
 Route::post('/banner/del/{id}', [BannerController::class, 'destroy']);
 
 Route::post('/push', [NotiController::class, 'push']);
+
+Route::get('/settings', [SettingController::class, 'settings']);
+Route::post('/setting/edit', [SettingController::class, 'edit']);

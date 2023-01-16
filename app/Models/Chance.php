@@ -27,6 +27,11 @@ class Chance extends Model
         return $this->belongsToMany(User::class, 'favourites', 'chance_id', 'user_id');
     }
 
+    public function clicks()
+    {
+        return $this->belongsToMany(User::class, 'clicks', 'chance_id', 'user_id')->withTimestamps();
+    }
+
     public function favourite()
     {
         return $this->hasMany(Favourite::class, 'chance_id');

@@ -35,7 +35,7 @@ class BannerController extends Controller
         $banner = Banner::create($data);
         return response()->json([
             'success' => true,
-            'country' => new BannerResource($banner)
+            'banner' => new BannerResource($banner)
         ], 200);
     }
 
@@ -59,7 +59,7 @@ class BannerController extends Controller
             $banner->update($data);
             return response()->json([
                 'success' => true,
-                'country' => new BannerResource($banner)
+                'banner' => new BannerResource($banner)
             ], 200);
         } else {
             return response()->json(['success' => false, 'msg' => 'there is no banner!'], 404);
