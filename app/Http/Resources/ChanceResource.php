@@ -42,12 +42,9 @@ class ChanceResource extends JsonResource
                 }
             }),
             'clicks' => $this->when(auth('sanctum')->check(), function () {
-                $clicks = [];
-                foreach ($this->clicks as $click) {
-                    array_push($clicks, $click->name);
-                }
-                return $clicks;
+                return ClickResource::collection($this->clicks);
             }),
+            'clicks_no' => $this->when(auth('sanctum')->check(),count($this->clicks))
         ];
     }
 }

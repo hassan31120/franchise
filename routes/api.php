@@ -4,6 +4,7 @@ use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\BannerController;
 use App\Http\Controllers\Api\CatController;
 use App\Http\Controllers\Api\ChanceController;
+use App\Http\Controllers\Api\ClickController;
 use App\Http\Controllers\Api\CountryController;
 use App\Http\Controllers\Api\FavouriteController;
 use App\Http\Controllers\Api\NotiController;
@@ -46,6 +47,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/userFavs', [FavouriteController::class, 'userFavs']);
     Route::post('/add_to_favs/{id}', [FavouriteController::class, 'add_to_favs']);
     Route::post('/del_fav/{id}', [FavouriteController::class, 'del_fav']);
+    Route::post('/addClick/{id}', [ClickController::class, 'addClick']);
 });
 
 Route::get('/countries', [CountryController::class, 'index']);
