@@ -75,7 +75,7 @@ export default {
         });
     },
     async fetchChance() {
-      axios
+        await axios
         .get(`api/myCahnces`)
         .then((res) => {
           this.chances = res.data.chances;

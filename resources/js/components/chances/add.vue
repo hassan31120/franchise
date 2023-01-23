@@ -311,7 +311,7 @@ export default {
     },
 
     async fetchCats() {
-      axios
+        await axios
         .get(`api/cats`)
         .then((res) => {
           this.cats = res.data.cats;

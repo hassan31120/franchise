@@ -133,7 +133,7 @@ export default {
       });
     },
     async saveForm() {
-      axios
+        await axios
         .post(`api/dashRegister`, this.form)
         .then(() => {
           this.$router.push({ name: "users" });

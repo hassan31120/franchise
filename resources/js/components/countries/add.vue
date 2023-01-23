@@ -95,7 +95,7 @@ export default {
       });
     },
     async saveForm() {
-      axios
+        await axios
         .post(`api/country/add`, this.form, {
           headers: {
             Accept: "application/json",

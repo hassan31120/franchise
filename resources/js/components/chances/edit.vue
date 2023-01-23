@@ -318,7 +318,7 @@ export default {
         });
     },
     async fetchChance() {
-      axios
+        await axios
         .get(`/api/show/${this.id}`)
         .then((res) => {
           this.form = res.data.chance;
@@ -328,7 +328,7 @@ export default {
         });
     },
     async saveForm() {
-      axios
+        await axios
         .post(
           `/api/chance/edit/${this.id}`,
           {
@@ -380,7 +380,7 @@ export default {
     },
 
     async fetchCountries() {
-      axios
+        await axios
         .get(`/api/countries`)
         .then((res) => {
           this.countries = res.data.countries;
@@ -391,7 +391,7 @@ export default {
     },
 
     async fetchCat() {
-      axios
+        await axios
         .get(`/api/cats`)
         .then((res) => {
           this.cats = res.data.cats;

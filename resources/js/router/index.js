@@ -18,6 +18,8 @@ import login from "../components/auth/login.vue";
 import notiPage from "../pages/noti/notiPage.vue";
 import error404 from "../components/errors/error404.vue";
 import error500 from "../components/errors/error500.vue";
+import settingsPage from "../pages/settings/settingsPage.vue";
+import edit_settingsPage from "../pages/settings/edit_settingsPage.vue";
 
 const routes = [
     {
@@ -259,6 +261,36 @@ const routes = [
         path: "/noti",
         name: "noti",
         component: notiPage,
+        beforeEnter: (to, from, next) => {
+            axios
+                .get(`api/authenticated`)
+                .then(() => {
+                    next();
+                })
+                .catch((err) => {
+                    return next({ name: "login" });
+                });
+        },
+    },
+    {
+        path: "/settings",
+        name: "settings",
+        component: settingsPage,
+        beforeEnter: (to, from, next) => {
+            axios
+                .get(`api/authenticated`)
+                .then(() => {
+                    next();
+                })
+                .catch((err) => {
+                    return next({ name: "login" });
+                });
+        },
+    },
+    {
+        path: "/edit_settings",
+        name: "edit_settings",
+        component: edit_settingsPage,
         beforeEnter: (to, from, next) => {
             axios
                 .get(`api/authenticated`)
