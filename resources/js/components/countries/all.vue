@@ -67,7 +67,7 @@ export default {
         });
     },
     async fetchCountries() {
-      axios
+      await axios
         .get(`api/countries`)
         .then((res) => {
           this.countries = res.data.countries;
