@@ -1,7 +1,10 @@
 <template>
   <main role="main" class="main-content">
     <div class="container-fluid">
-      <h2 class="h5 page-title pb-5">إضافة بلد جديد</h2>
+      <div v-if="loading">
+        <div><loadingPage /></div>
+      </div>
+      <h2 class="h5 page-title pb-5">إضافة دولة جديدة</h2>
 
       <form @submit.prevent="saveForm">
         <div class="card shadow mb-4">
@@ -70,6 +73,7 @@ export default {
         image: "",
       },
       errors: [],
+      loading: false,
     };
   },
   mounted() {},
@@ -91,11 +95,12 @@ export default {
       });
       toastMixin.fire({
         animation: true,
-        title: "تم إضافة البلد بنجاح",
+        title: "تم إضافة الدولة بنجاح",
       });
     },
     async saveForm() {
-        await axios
+      this.loading = true;
+      await axios
         .post(`api/country/add`, this.form, {
           headers: {
             Accept: "application/json",
@@ -110,6 +115,7 @@ export default {
         .catch((error) => {
           this.errors = error.response.data.errors;
         });
+      this.loading = false;
     },
 
     selectFile() {

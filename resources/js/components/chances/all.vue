@@ -1,6 +1,9 @@
 <template>
   <main role="main" class="main-content">
     <div class="container-fluid">
+      <div v-if="loading">
+        <div><loadingPage /></div>
+      </div>
       <h2 class="h5 page-title pb-5">كل الفرص</h2>
 
       <table class="table mt-5 table-hover">
@@ -48,6 +51,7 @@ export default {
   data() {
     return {
       chances: [],
+      loading: false,
     };
   },
   mounted() {
@@ -75,7 +79,8 @@ export default {
         });
     },
     async fetchChance() {
-        await axios
+      this.loading = true;
+      await axios
         .get(`api/myCahnces`)
         .then((res) => {
           this.chances = res.data.chances;
@@ -83,6 +88,7 @@ export default {
         .catch(() => {
           this.$router.push({ name: "serverErr" });
         });
+      this.loading = false;
     },
   },
 };

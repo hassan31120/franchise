@@ -4,6 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/x-icon" href="{{ asset('dash/assets/points.png') }}">
 
     <title>Franchise</title>
     <link rel="stylesheet" href="{{ asset('dash/css/simplebar.css') }}">
@@ -39,8 +40,8 @@
     <script src="{{ asset('dash/js/moment.min.js') }}"></script>
     <script src="{{ asset('dash/js/bootstrap.min.js') }}"></script>
     <script src="{{ asset('dash/js/simplebar.min.js') }}"></script>
-    <script src='{{ asset('dash/js/daterangepicker.js') }}'></script>
-    <script src='{{ asset('dash/js/jquery.stickOnScroll.js') }}'></script>
+    <script src="{{ asset('dash/js/daterangepicker.js') }}"></script>
+    <script src="{{ asset('dash/js/jquery.stickOnScroll.js') }}"></script>
     <script src="{{ asset('dash/js/tinycolor-min.js') }}"></script>
     <script src="{{ asset('dash/js/config.js') }}"></script>
     <script src="{{ asset('dash/js/d3.min.js') }}"></script>
@@ -58,14 +59,14 @@
     <script src="{{ asset('dash/js/jquery.sparkline.min.js') }}"></script>
     <script src="{{ asset('dash/js/apexcharts.min.js') }}"></script>
     <script src="{{ asset('dash/js/apexcharts.custom.js') }}"></script>
-    <script src='{{ asset('dash/js/jquery.mask.min.js') }}'></script>
-    <script src='{{ asset('dash/js/select2.min.js') }}'></script>
-    <script src='{{ asset('dash/js/jquery.steps.min.js') }}'></script>
-    <script src='{{ asset('dash/js/jquery.validate.min.js') }}'></script>
-    <script src='{{ asset('dash/js/jquery.timepicker.js') }}'></script>
-    <script src='{{ asset('dash/js/dropzone.min.js') }}'></script>
-    <script src='{{ asset('dash/js/uppy.min.js') }}'></script>
-    <script src='{{ asset('dash/js/quill.min.js') }}'></script>
+    <script src="{{ asset('dash/js/jquery.mask.min.js') }}"></script>
+    <script src="{{ asset('dash/js/select2.min.js') }}"></script>
+    <script src="{{ asset('dash/js/jquery.steps.min.js') }}"></script>
+    <script src="{{ asset('dash/js/jquery.validate.min.js') }}"></script>
+    <script src="{{ asset('dash/js/jquery.timepicker.js') }}"></script>
+    <script src="{{ asset('dash/js/dropzone.min.js') }}"></script>
+    <script src="{{ asset('dash/js/uppy.min.js') }}"></script>
+    <script src="{{ asset('dash/js/quill.min.js') }}"></script>
     <script>
         $('.select2').select2({
             theme: 'bootstrap4',

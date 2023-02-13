@@ -20,6 +20,10 @@ import error404 from "../components/errors/error404.vue";
 import error500 from "../components/errors/error500.vue";
 import settingsPage from "../pages/settings/settingsPage.vue";
 import edit_settingsPage from "../pages/settings/edit_settingsPage.vue";
+import about from "../components/settings/about.vue";
+import terms from "../components/settings/terms.vue";
+import privacy from "../components/settings/privacy.vue";
+import contact from "../components/settings/contact.vue";
 
 const routes = [
     {
@@ -276,6 +280,28 @@ const routes = [
         path: "/settings",
         name: "settings",
         component: settingsPage,
+        children: [
+            {
+                path: "/about",
+                name: "about",
+                component: about,
+            },
+            {
+                path: "/contact",
+                name: "contact",
+                component: contact,
+            },
+            {
+                path: "/privacy",
+                name: "privacy",
+                component: privacy,
+            },
+            {
+                path: "/terms",
+                name: "terms",
+                component: terms,
+            },
+        ],
         beforeEnter: (to, from, next) => {
             axios
                 .get(`api/authenticated`)

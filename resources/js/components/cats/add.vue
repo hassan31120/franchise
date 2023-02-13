@@ -1,6 +1,9 @@
 <template>
   <main role="main" class="main-content">
     <div class="container-fluid">
+      <div v-if="loading">
+        <div><loadingPage /></div>
+      </div>
       <h2 class="h5 page-title pb-5">إضافة قسم جديد</h2>
 
       <form @submit.prevent="saveForm">
@@ -70,6 +73,7 @@ export default {
         image: "",
       },
       errors: [],
+      loading: false,
     };
   },
   mounted() {},
@@ -95,7 +99,8 @@ export default {
       });
     },
     async saveForm() {
-        await axios
+      this.loading = true;
+      await axios
         .post(`api/cat/add`, this.form, {
           headers: {
             Accept: "application/json",
@@ -110,6 +115,7 @@ export default {
         .catch((error) => {
           this.errors = error.response.data.errors;
         });
+      this.loading = false;
     },
 
     selectFile() {

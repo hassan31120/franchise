@@ -1,12 +1,15 @@
 <template>
   <main role="main" class="main-content">
     <div class="container-fluid">
+      <div v-if="loading">
+        <div><loadingPage /></div>
+      </div>
       <!-- <h2 class="h5 page-title pb-5">إضافة بلد جديد</h2> -->
 
       <form @submit.prevent="updateForm()">
         <div class="card shadow mb-4">
           <div class="card-header">
-            <strong class="card-title">تعديل البلد</strong>
+            <strong class="card-title">تعديل الدولة</strong>
           </div>
           <div class="card-body">
             <div class="row">
@@ -69,6 +72,7 @@ export default {
       },
       errors: [],
       id: this.$route.params.id,
+      loading: false,
     };
   },
   mounted() {
@@ -92,11 +96,12 @@ export default {
       });
       toastMixin.fire({
         animation: true,
-        title: "تم تعديل البلد بنجاح",
+        title: "تم تعديل الدولة بنجاح",
       });
     },
     async country() {
-      axios
+      this.loading = true;
+      await axios
         .get(`/api/country/show/${this.id}`)
         .then((res) => {
           this.form = res.data.country;
@@ -104,9 +109,11 @@ export default {
         .catch(() => {
           this.$router.push({ name: "error404" });
         });
+      this.loading = false;
     },
     async updateForm() {
-      axios
+      this.loading = true;
+      await axios
         .post(
           `/api/country/edit/${this.id}`,
           {
@@ -127,6 +134,7 @@ export default {
         .catch((error) => {
           console.log(error);
         });
+      this.loading = false;
     },
 
     selectFile() {

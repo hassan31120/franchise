@@ -1,8 +1,10 @@
 <template>
   <main role="main" class="main-content">
     <div class="container-fluid">
+      <div v-if="loading">
+        <div><loadingPage /></div>
+      </div>
       <h2 class="h5 page-title pb-5">كل الأعضاء</h2>
-
       <table class="table mt-5 table-hover">
         <thead style="background-color: #ff7c00">
           <tr>
@@ -42,6 +44,7 @@ export default {
   data() {
     return {
       users: [],
+      loading: false,
     };
   },
   mounted() {
@@ -69,7 +72,8 @@ export default {
         });
     },
     async fetchUsers() {
-      axios
+      this.loading = true;
+      await axios
         .get(`api/users`)
         .then((res) => {
           this.users = res.data.users;
@@ -77,6 +81,7 @@ export default {
         .catch(() => {
           this.$router.push({ name: "serverErr" });
         });
+      this.loading = false;
     },
   },
 };

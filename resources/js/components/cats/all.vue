@@ -1,7 +1,10 @@
 <template>
   <main role="main" class="main-content">
     <div class="container-fluid">
-      <h2 class="h5 page-title pb-5">كل القطاعات</h2>
+      <div v-if="loading">
+        <div><loadingPage /></div>
+      </div>
+      <h2 class="h5 page-title pb-5">كل الأنشطة التجارية</h2>
 
       <table class="table mt-5 table-hover">
         <thead style="background-color: #ff7c00">
@@ -42,6 +45,7 @@ export default {
   data() {
     return {
       cats: [],
+      loading: false,
     };
   },
   mounted() {
@@ -70,7 +74,8 @@ export default {
     },
 
     async fetchCats() {
-        await axios
+      this.loading = true;
+      await axios
         .get(`api/cats`)
         .then((res) => {
           this.cats = res.data.cats;
@@ -78,6 +83,7 @@ export default {
         .catch(() => {
           this.$router.push({ name: "serverErr" });
         });
+      this.loading = false;
     },
   },
 };

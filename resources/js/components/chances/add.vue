@@ -1,6 +1,9 @@
 <template>
   <main role="main" class="main-content">
     <div class="container-fluid">
+      <div v-if="loading">
+        <div><loadingPage /></div>
+      </div>
       <h2 class="h5 page-title pb-5">إضافة فرصة جديدة</h2>
 
       <form @submit.prevent="saveForm">
@@ -241,6 +244,7 @@ export default {
       errors: [],
       cats: [],
       countries: [],
+      loading: false,
     };
   },
   mounted() {
@@ -269,7 +273,8 @@ export default {
       });
     },
     async saveForm() {
-      axios
+      this.loading = true;
+      await axios
         .post(`api/chance/add`, this.form, {
           headers: {
             Accept: "application/json",
@@ -297,10 +302,12 @@ export default {
           this.errors = error.response.data.message;
           console.log(error.response.data.message);
         });
+      this.loading = false;
     },
 
     async fetchCountries() {
-      axios
+      this.loading = true;
+      await axios
         .get(`api/countries`)
         .then((res) => {
           this.countries = res.data.countries;
@@ -308,10 +315,12 @@ export default {
         .catch(() => {
           this.$router.push({ name: "error500" });
         });
+      this.loading = false;
     },
 
     async fetchCats() {
-        await axios
+      this.loading = true;
+      await axios
         .get(`api/cats`)
         .then((res) => {
           this.cats = res.data.cats;
@@ -319,6 +328,7 @@ export default {
         .catch(() => {
           this.$router.push({ name: "serverErr" });
         });
+      this.loading = false;
     },
 
     selectLogo() {

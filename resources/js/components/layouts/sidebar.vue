@@ -13,15 +13,15 @@
     </a>
     <nav class="vertnav navbar navbar-light">
       <!-- nav bar -->
-      <div class="w-100 mb-4 d-flex">
-        <a class="navbar-brand mx-auto mt-2 flex-fill text-center" href="./index.html">
-          <img src="@/assets/faf.png" alt="logo" width="220" height="60" />
-        </a>
+      <div class="w-100 mb-5 d-flex">
+        <router-link
+          class="navbar-brand mx-auto mt-2 flex-fill text-center"
+          :to="{ name: 'home' }"
+        >
+          <img src="@/assets/new.png" alt="logo" width="230" />
+        </router-link>
       </div>
 
-      <p class="text-muted nav-heading mt-4 mb-1">
-        <span>Franchise</span>
-      </p>
       <ul class="navbar-nav flex-fill w-100 mb-2">
         <li class="nav-item dropdown">
           <a
@@ -54,17 +54,17 @@
             class="dropdown-toggle nav-link"
           >
             <i class="fe fe-pie-chart fe-16"></i>
-            <span class="ml-3 item-text">البلاد</span>
+            <span class="ml-3 item-text">الدول</span>
           </a>
           <ul class="collapse list-unstyled pl-4 w-100" id="countries">
             <li class="nav-item">
               <router-link class="nav-link pl-3" :to="{ name: 'countries' }"
-                ><span class="ml-1 item-text">كل البلاد</span>
+                ><span class="ml-1 item-text">كل الدول</span>
               </router-link>
             </li>
             <li class="nav-item">
               <router-link class="nav-link pl-3" :to="{ name: 'add_country' }"
-                ><span class="ml-1 item-text">إضافة بلد جديد</span>
+                ><span class="ml-1 item-text">إضافة دولة جديدة</span>
               </router-link>
             </li>
           </ul>
@@ -77,17 +77,17 @@
             class="dropdown-toggle nav-link"
           >
             <i class="fe fe-layers fe-16"></i>
-            <span class="ml-3 item-text">القطاعات</span>
+            <span class="ml-3 item-text">الأنشطة التجارية</span>
           </a>
           <ul class="collapse list-unstyled pl-4 w-100" id="categories">
             <li class="nav-item">
               <router-link class="nav-link pl-3" :to="{ name: 'cats' }"
-                ><span class="ml-1 item-text">كل القطاعات</span>
+                ><span class="ml-1 item-text">كل الأنشطة التجارية</span>
               </router-link>
             </li>
             <li class="nav-item">
               <router-link class="nav-link pl-3" :to="{ name: 'add_cat' }"
-                ><span class="ml-1 item-text">إضافة قطاع جديد</span>
+                ><span class="ml-1 item-text">إضافة نشاط تجاري جديد</span>
               </router-link>
             </li>
           </ul>
@@ -145,7 +145,7 @@
           </a>
           <ul class="collapse list-unstyled pl-4 w-100" id="settings">
             <li class="nav-item">
-              <router-link class="nav-link pl-3" :to="{ name: 'settings' }"
+              <router-link class="nav-link pl-3" :to="{ name: 'about' }"
                 ><span class="ml-1 item-text">كل الإعدادات</span>
               </router-link>
             </li>

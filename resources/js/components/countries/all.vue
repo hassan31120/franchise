@@ -1,7 +1,10 @@
 <template>
   <main role="main" class="main-content">
     <div class="container-fluid">
-      <h2 class="h5 page-title pb-5">كل البلاد</h2>
+      <div v-if="loading">
+        <div><loadingPage /></div>
+      </div>
+      <h2 class="h5 page-title pb-5">كل الدول</h2>
 
       <table class="table mt-5 table-hover">
         <thead style="background-color: #ff7c00">
@@ -40,6 +43,7 @@ export default {
   data() {
     return {
       countries: [],
+      loading: false,
     };
   },
   mounted() {
@@ -67,6 +71,7 @@ export default {
         });
     },
     async fetchCountries() {
+      this.loading = true;
       await axios
         .get(`api/countries`)
         .then((res) => {
@@ -75,6 +80,7 @@ export default {
         .catch(() => {
           this.$router.push({ name: "error500" });
         });
+      this.loading = false;
     },
   },
 };

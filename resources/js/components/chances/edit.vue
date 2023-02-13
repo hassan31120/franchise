@@ -1,6 +1,9 @@
 <template>
   <main role="main" class="main-content">
     <div class="container-fluid">
+      <div v-if="loading">
+        <div><loadingPage /></div>
+      </div>
       <!-- <h2 class="h5 page-title pb-5">إضافة فرصة جديدة</h2> -->
 
       <form @submit.prevent="saveForm">
@@ -269,6 +272,7 @@ export default {
       cats: [],
       countries: [],
       id: this.$route.params.id,
+      loading: false,
     };
   },
   mounted() {
@@ -318,7 +322,8 @@ export default {
         });
     },
     async fetchChance() {
-        await axios
+      this.loading = true;
+      await axios
         .get(`/api/show/${this.id}`)
         .then((res) => {
           this.form = res.data.chance;
@@ -326,9 +331,11 @@ export default {
         .catch(() => {
           this.$router.push({ name: "error404" });
         });
+      this.loading = false;
     },
     async saveForm() {
-        await axios
+      this.loading = true;
+      await axios
         .post(
           `/api/chance/edit/${this.id}`,
           {
@@ -377,10 +384,12 @@ export default {
           this.errors = error.response.data.message;
           console.log(error);
         });
+      this.loading = false;
     },
 
     async fetchCountries() {
-        await axios
+      this.loading = true;
+      await axios
         .get(`/api/countries`)
         .then((res) => {
           this.countries = res.data.countries;
@@ -388,10 +397,12 @@ export default {
         .catch(() => {
           this.$router.push({ name: "error500" });
         });
+      this.loading = false;
     },
 
     async fetchCat() {
-        await axios
+      this.loading = true;
+      await axios
         .get(`/api/cats`)
         .then((res) => {
           this.cats = res.data.cats;
@@ -399,6 +410,7 @@ export default {
         .catch(() => {
           this.$router.push({ name: "serverErr" });
         });
+      this.loading = false;
     },
 
     selectLogo() {

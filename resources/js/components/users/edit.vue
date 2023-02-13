@@ -1,6 +1,9 @@
 <template>
   <main role="main" class="main-content">
     <div class="container-fluid">
+      <div v-if="loading">
+        <div><loadingPage /></div>
+      </div>
       <!-- <h2 class="h5 page-title pb-5">إضافة عضو جديد</h2> -->
 
       <form @submit.prevent="saveForm">
@@ -83,6 +86,7 @@ export default {
       },
       errors: [],
       id: this.$route.params.id,
+      loading: false,
     };
   },
   mounted() {
@@ -110,7 +114,8 @@ export default {
       });
     },
     async user() {
-      axios
+      this.loading = true;
+      await axios
         .get(`/api/user/show/${this.id}`)
         .then((res) => {
           this.form = res.data.user;
@@ -118,9 +123,11 @@ export default {
         .catch(() => {
           this.$router.push({ name: "error404" });
         });
+      this.loading = false;
     },
     async saveForm() {
-      axios
+      this.loading = true;
+      await axios
         .post(`/api/user/edit/${this.id}`, this.form)
         .then(() => {
           this.user();
@@ -130,6 +137,7 @@ export default {
         .catch((error) => {
           this.errors = error.response.data.errors;
         });
+      this.loading = false;
     },
   },
 };

@@ -1,6 +1,9 @@
 <template>
   <main role="main" class="main-content">
     <div class="container-fluid">
+      <div v-if="loading">
+        <div><loadingPage /></div>
+      </div>
       <!-- Main content -->
       <div class="row">
         <div class="col-lg-8">
@@ -122,6 +125,7 @@ export default {
     return {
       chance: {},
       id: this.$route.params.id,
+      loading: false,
     };
   },
   mounted() {
@@ -129,7 +133,8 @@ export default {
   },
   methods: {
     async fetchChance() {
-      axios
+      this.loading = true;
+      await axios
         .get(`/api/show/${this.id}`)
         .then((res) => {
           this.chance = res.data.chance;
@@ -137,6 +142,7 @@ export default {
         .catch(() => {
           this.$router.push({ name: "error404" });
         });
+      this.loading = false;
     },
   },
 };

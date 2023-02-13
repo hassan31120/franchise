@@ -1,12 +1,15 @@
 <template>
   <main role="main" class="main-content">
     <div class="container-fluid">
+      <div v-if="loading">
+        <div><loadingPage /></div>
+      </div>
       <!-- <h2 class="h5 page-title pb-5">إضافة قسم جديد</h2> -->
 
       <form @submit.prevent="saveForm">
         <div class="card shadow mb-4">
           <div class="card-header">
-            <strong class="card-title">إضافةجديد</strong>
+            <strong class="card-title">تعديل النشاط التجاري</strong>
           </div>
           <div class="card-body">
             <div class="row">
@@ -68,6 +71,7 @@ export default {
       },
       errors: [],
       id: this.$route.params.id,
+      loading: false,
     };
   },
   mounted() {
@@ -75,7 +79,8 @@ export default {
   },
   methods: {
     async fetchCategory() {
-      axios
+      this.loading = true;
+      await axios
         .get(`/api/cat/show/${this.id}`)
         .then((res) => {
           this.form = res.data.cat;
@@ -83,6 +88,7 @@ export default {
         .catch(() => {
           this.$router.push({ name: "error404" });
         });
+      this.loading = false;
     },
     alert() {
       var toastMixin = this.$swal.mixin({

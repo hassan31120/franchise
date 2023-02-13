@@ -1,69 +1,60 @@
 <template>
   <main role="main" class="main-content">
     <div class="container-fluid">
-      <h2 class="h5 page-title pb-5">إرسال edit جديد</h2>
-
+      <div v-if="loading">
+        <div><loadingPage /></div>
+      </div>
       <form @submit.prevent="saveForm()">
         <div class="card shadow mb-4">
           <div class="card-header">
-            <strong class="card-title">إرسال إشعار جديد</strong>
+            <strong class="card-title">تعديل الإعدادات</strong>
           </div>
           <div class="card-body">
             <div class="row">
-              <div class="col-md-6 align-self-center">
-                <div class="form-group mb-3">
-                  <label for="about">معلومات عنا</label>
-                  <textarea
-                    class="form-control"
-                    id="about"
-                    cols="30"
-                    rows="8"
-                    v-model="form.about"
-                  ></textarea>
+              <div class="col-md-12 align-self-center">
+                <div class="form-group mb-3" style="direction: ltr !important">
+                  <label for="about">من نحن</label>
+                  <QuillEditor
+                    v-model:content="form.about"
+                    content-type="html"
+                    toolbar="full"
+                  />
                   <span class="text-danger" v-if="errors.about">{{
                     errors.about[0]
                   }}</span>
                 </div>
-                <div class="form-group mb-3">
-                  <label for="terms">الشروط والأحكام</label>
-                  <textarea
-                    class="form-control"
-                    id="terms"
-                    cols="30"
-                    rows="8"
-                    v-model="form.terms"
-                  ></textarea>
-                  <span class="text-danger" v-if="errors.terms">{{
-                    errors.terms[0]
+                <div class="form-group mb-3" style="direction: ltr !important">
+                  <label for="about">الشروط والأحكام</label>
+                  <QuillEditor
+                    v-model:content="form.terms"
+                    content-type="html"
+                    toolbar="full"
+                  />
+                  <span class="text-danger" v-if="errors.about">{{
+                    errors.about[0]
                   }}</span>
                 </div>
-              </div>
-              <!-- /.col -->
-              <div class="col-md-6">
-                <div class="form-group mb-3">
-                  <label for="contact">تواصل معنا</label>
-                  <textarea
-                    class="form-control"
-                    id="contact"
-                    cols="30"
-                    rows="8"
-                    v-model="form.contact"
-                  ></textarea>
-                  <span class="text-danger" v-if="errors.contact">{{
-                    errors.contact[0]
+                <div class="form-group mb-3" style="direction: ltr !important">
+                  <label for="about">تواصل معنا</label>
+                  <QuillEditor
+                    v-model:content="form.contact"
+                    content-type="html"
+                    toolbar="full"
+                  />
+                  <span class="text-danger" v-if="errors.about">{{
+                    errors.about[0]
                   }}</span>
                 </div>
-                <div class="form-group mb-3">
-                  <label for="privacy">سياسة الخصوصية</label>
-                  <textarea
-                    class="form-control"
-                    id="privacy"
-                    cols="30"
-                    rows="8"
-                    v-model="form.privacy"
-                  ></textarea>
-                  <span class="text-danger" v-if="errors.privacy">{{
-                    errors.privacy[0]
+
+                <div class="form-group mb-3" style="direction: ltr !important">
+                  <label for="about">سياسة الخصوصية</label>
+                  <QuillEditor
+                    v-model:content="form.privacy"
+                    content-type="html"
+                    toolbar="full"
+                  />
+                  <span class="text-danger" v-if="errors.about">{{
+                    errors.about[0]
                   }}</span>
                 </div>
               </div>
@@ -99,6 +90,7 @@ export default {
         privacy: "",
       },
       errors: [],
+      loading: false,
     };
   },
   mounted() {
@@ -126,6 +118,7 @@ export default {
       });
     },
     async saveForm() {
+      this.loading = true;
       await axios
         .post(`/api/setting/edit`, this.form, {
           headers: {
@@ -134,15 +127,17 @@ export default {
           },
         })
         .then(() => {
-          this.$router.push({ name: "settings" });
+          this.$router.push({ name: "about" });
           this.alert();
         })
         .catch((error) => {
           this.errors = error.response.data.errors;
         });
+      this.loading = false;
     },
 
     async fetchSettings() {
+      this.loading = true;
       await axios
         .get(`/api/settings`)
         .then((res) => {
@@ -151,6 +146,7 @@ export default {
         .catch(() => {
           this.$router.push({ name: "serverErr" });
         });
+      this.loading = false;
     },
   },
 };

@@ -5,7 +5,7 @@
         class="navbar-brand mx-auto mt-3 flex-fill text-center"
         :to="{ name: 'home' }"
       >
-        <img src="@/assets/faf.png" alt="logo" width="180" height="60" />
+        <img src="@/assets/new.png" alt="logo" width="180" />
       </router-link>
     </div>
     <button
@@ -242,7 +242,7 @@ export default {
 
 <style>
 /* Small devices (portrait tablets and large phones, 600px and up) */
-@media only screen and (min-width: 600px) {
+@media only screen and (min-width: 992px) {
   .navHassan {
     display: none;
   }

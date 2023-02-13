@@ -1,6 +1,9 @@
 <template>
   <main role="main" class="main-content">
     <div class="container-fluid">
+      <div v-if="loading">
+        <div><loadingPage /></div>
+      </div>
       <h2 class="h5 page-title pb-5">إضافة عضو جديد</h2>
 
       <form @submit.prevent="saveForm">
@@ -108,6 +111,7 @@ export default {
         password_confirmation: "",
       },
       errors: [],
+      loading: false,
     };
   },
   mounted() {},
@@ -133,7 +137,8 @@ export default {
       });
     },
     async saveForm() {
-        await axios
+      this.loading = true;
+      await axios
         .post(`api/dashRegister`, this.form)
         .then(() => {
           this.$router.push({ name: "users" });
@@ -142,6 +147,7 @@ export default {
         .catch((error) => {
           this.errors = error.response.data.errors;
         });
+      this.loading = false;
     },
   },
 };
