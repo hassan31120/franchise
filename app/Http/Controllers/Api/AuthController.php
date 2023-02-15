@@ -121,7 +121,7 @@ class AuthController extends Controller
 
     public function users()
     {
-        $users = User::all();
+        $users = User::where('userType', 'user')->latest()->get();
         if (count($users) > 0) {
             return response()->json([
                 'success' => true,
@@ -299,6 +299,60 @@ class AuthController extends Controller
                 'name' => 'required',
                 'email' => 'required|email|unique:users,email,' . $user->id,
                 'number' => 'required',
+            ]);
+            $user->update($data);
+            return response()->json([
+                'success' => true,
+                'user' => new UserResource($user)
+            ], 200);
+        } else {
+            return response()->json([
+                'success' => false,
+                'message' => 'there is no user!'
+            ], 404);
+        }
+    }
+
+    public function admins()
+    {
+        $users = User::where('userType', 'superAdmin')->orWhere('userType', 'admin')->latest()->get();
+        if (count($users) > 0) {
+            return response()->json([
+                'success' => true,
+                'users' => UserResource::collection($users)
+            ], 200);
+        }
+    }
+
+    public function add_admin(Request $request)
+    {
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required|email|unique:users',
+            'number' => 'required',
+            'password' => 'required',
+            'password_confirmation' => 'required|same:password',
+            'userType' => 'required'
+        ]);
+        $data = $request->all();
+        $data['password'] = Hash::make($data['password']);
+        $user = User::create($data);
+        return response()->json([
+            'success' => true,
+            'user' => $user,
+        ], 200);
+    }
+
+    public function edit_admin(Request $request, $id)
+    {
+        $user = User::find($id);
+        if ($user) {
+            $data = $request->all();
+            $request->validate([
+                'name' => 'required',
+                'email' => 'required|email|unique:users,email,' . $user->id,
+                'number' => 'required',
+                'userType' => 'required'
             ]);
             $user->update($data);
             return response()->json([

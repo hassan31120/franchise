@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\ArticleController;
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\BannerController;
 use App\Http\Controllers\Api\CatController;
@@ -88,3 +89,13 @@ Route::post('/push', [NotiController::class, 'push']);
 
 Route::get('/settings', [SettingController::class, 'settings']);
 Route::post('/setting/edit', [SettingController::class, 'edit']);
+
+Route::get('/admins', [AuthController::class, 'admins']);
+Route::post('/add_admin', [AuthController::class, 'add_admin']);
+Route::post('/edit_admin/{id}', [AuthController::class, 'edit_admin']);
+
+Route::get('/articles', [ArticleController::class, 'index']);
+Route::post('/article/add', [ArticleController::class, 'store']);
+Route::get('/article/show/{id}', [ArticleController::class, 'show']);
+Route::post('/article/edit/{id}', [ArticleController::class, 'update']);
+Route::post('/article/del/{id}', [ArticleController::class, 'destroy']);

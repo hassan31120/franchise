@@ -25,6 +25,29 @@
       <ul class="navbar-nav flex-fill w-100 mb-2">
         <li class="nav-item dropdown">
           <a
+            href="#admins"
+            data-toggle="collapse"
+            aria-expanded="false"
+            class="dropdown-toggle nav-link"
+          >
+            <i class="fe fe-user-check fe-16"></i>
+            <span class="ml-3 item-text">المسؤولين</span>
+          </a>
+          <ul class="collapse list-unstyled pl-4 w-100" id="admins">
+            <li class="nav-item">
+              <router-link class="nav-link pl-3" :to="{ name: 'admins' }"
+                ><span class="ml-1 item-text">كل المسؤولين</span>
+              </router-link>
+            </li>
+            <li class="nav-item">
+              <router-link class="nav-link pl-3" :to="{ name: 'add_admin' }"
+                ><span class="ml-1 item-text">إضافة مسؤول جديد</span>
+              </router-link>
+            </li>
+          </ul>
+        </li>
+        <li class="nav-item dropdown">
+          <a
             href="#members"
             data-toggle="collapse"
             aria-expanded="false"
@@ -46,6 +69,7 @@
             </li>
           </ul>
         </li>
+
         <li class="nav-item dropdown">
           <a
             href="#countries"
@@ -111,6 +135,29 @@
             <li class="nav-item">
               <router-link class="nav-link pl-3" :to="{ name: 'add_chance' }"
                 ><span class="ml-1 item-text">إضافة فرصة جديدة</span>
+              </router-link>
+            </li>
+          </ul>
+        </li>
+        <li class="nav-item dropdown">
+          <a
+            href="#articles"
+            data-toggle="collapse"
+            aria-expanded="false"
+            class="dropdown-toggle nav-link"
+          >
+            <i class="fe fe-book-open fe-16"></i>
+            <span class="ml-3 item-text">المقالات</span>
+          </a>
+          <ul class="collapse list-unstyled pl-4 w-100" id="articles">
+            <li class="nav-item">
+              <router-link class="nav-link pl-3" :to="{ name: 'articles' }"
+                ><span class="ml-1 item-text">كل المقالات</span>
+              </router-link>
+            </li>
+            <li class="nav-item">
+              <router-link class="nav-link pl-3" :to="{ name: 'add_article' }"
+                ><span class="ml-1 item-text">إضافة مقال جديد</span>
               </router-link>
             </li>
           </ul>

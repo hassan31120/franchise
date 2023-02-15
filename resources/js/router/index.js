@@ -24,6 +24,12 @@ import about from "../components/settings/about.vue";
 import terms from "../components/settings/terms.vue";
 import privacy from "../components/settings/privacy.vue";
 import contact from "../components/settings/contact.vue";
+import adminsPage from "../pages/admins/adminsPage.vue";
+import add_adminPage from "../pages/admins/add_adminPage.vue";
+import edit_adminPage from "../pages/admins/edit_adminPage.vue";
+import articlesPage from "../pages/articles/articlesPage.vue";
+import add_articlePage from "../pages/articles/add_articlePage.vue";
+import edit_articlePage from "../pages/articles/edit_articlePage.vue";
 
 const routes = [
     {
@@ -324,6 +330,96 @@ const routes = [
                     next();
                 })
                 .catch((err) => {
+                    return next({ name: "login" });
+                });
+        },
+    },
+    {
+        path: "/admins",
+        name: "admins",
+        component: adminsPage,
+        beforeEnter: (to, from, next) => {
+            axios
+                .get(`api/authenticated`)
+                .then(() => {
+                    next();
+                })
+                .catch((err) => {
+                    return next({ name: "login" });
+                });
+        },
+    },
+    {
+        path: "/add_admin",
+        name: "add_admin",
+        component: add_adminPage,
+        beforeEnter: (to, from, next) => {
+            axios
+                .get(`api/authenticated`)
+                .then(() => {
+                    next();
+                })
+                .catch((err) => {
+                    return next({ name: "login" });
+                });
+        },
+    },
+    {
+        path: "/edit_admin/:id",
+        name: "edit_admin",
+        component: edit_adminPage,
+        beforeEnter: (to, from, next) => {
+            axios
+                .get(`api/authenticated`)
+                .then(() => {
+                    next();
+                })
+                .catch(() => {
+                    return next({ name: "login" });
+                });
+        },
+    },
+    {
+        path: "/articles",
+        name: "articles",
+        component: articlesPage,
+        beforeEnter: (to, from, next) => {
+            axios
+                .get(`api/authenticated`)
+                .then(() => {
+                    next();
+                })
+                .catch((err) => {
+                    return next({ name: "login" });
+                });
+        },
+    },
+    {
+        path: "/add_article",
+        name: "add_article",
+        component: add_articlePage,
+        beforeEnter: (to, from, next) => {
+            axios
+                .get(`api/authenticated`)
+                .then(() => {
+                    next();
+                })
+                .catch((err) => {
+                    return next({ name: "login" });
+                });
+        },
+    },
+    {
+        path: "/edit_article/:id",
+        name: "edit_article",
+        component: edit_articlePage,
+        beforeEnter: (to, from, next) => {
+            axios
+                .get(`api/authenticated`)
+                .then(() => {
+                    next();
+                })
+                .catch(() => {
                     return next({ name: "login" });
                 });
         },
