@@ -155,6 +155,13 @@ class AuthController extends Controller
 
         $data = $request->all();
 
+        if ($request->hasFile('image')) {
+            $file = $request->file('image');
+            $path = 'storage/avatars/' . date('Y') . '/' . date('m') . '/';
+            $name = $path . time() . '-' . $file->getClientOriginalName();
+            $file->move($path, $name);
+            $data['image'] = $name;
+        }
         $user->update($data);
 
         return response()->json(new UserResource($user), 200);
@@ -364,6 +371,23 @@ class AuthController extends Controller
                 'success' => false,
                 'message' => 'there is no user!'
             ], 404);
+        }
+    }
+
+    public function deleteUser()
+    {
+        $user = User::find(Auth::user()->id);
+        if ($user) {
+            $user->delete();
+            return response()->json([
+                'success' => true,
+                'msg' => 'user has been deleted succeessfully'
+            ], 200);
+        } else {
+            return response()->json([
+                'success' => false,
+                'msg' => 'there is no such user'
+            ], 200);
         }
     }
 }

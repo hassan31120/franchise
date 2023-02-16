@@ -24,37 +24,61 @@
                   }}</span>
                 </div>
                 <div class="form-group mb-3" style="direction: ltr !important">
-                  <label for="about">الشروط والأحكام</label>
+                  <label for="terms">الشروط والأحكام</label>
                   <QuillEditor
                     v-model:content="form.terms"
                     content-type="html"
                     toolbar="full"
                   />
-                  <span class="text-danger" v-if="errors.about">{{
-                    errors.about[0]
+                  <span class="text-danger" v-if="errors.terms">{{
+                    errors.terms[0]
                   }}</span>
                 </div>
                 <div class="form-group mb-3" style="direction: ltr !important">
-                  <label for="about">تواصل معنا</label>
+                  <label for="contact">تواصل معنا</label>
                   <QuillEditor
                     v-model:content="form.contact"
                     content-type="html"
                     toolbar="full"
                   />
-                  <span class="text-danger" v-if="errors.about">{{
-                    errors.about[0]
+                  <span class="text-danger" v-if="errors.contact">{{
+                    errors.contact[0]
                   }}</span>
                 </div>
 
                 <div class="form-group mb-3" style="direction: ltr !important">
-                  <label for="about">سياسة الخصوصية</label>
+                  <label for="privacy">سياسة الخصوصية</label>
                   <QuillEditor
                     v-model:content="form.privacy"
                     content-type="html"
                     toolbar="full"
                   />
-                  <span class="text-danger" v-if="errors.about">{{
-                    errors.about[0]
+                  <span class="text-danger" v-if="errors.privacy">{{
+                    errors.privacy[0]
+                  }}</span>
+                </div>
+
+                <div class="form-group mb-3">
+                  <label for="email">بريد الدعم</label>
+                  <input type="text" v-model="form.email" class="form-control" />
+                  <span class="text-danger" v-if="errors.email">{{
+                    errors.email[0]
+                  }}</span>
+                </div>
+
+                <div class="form-group mb-3">
+                  <label for="mobile">رقم الهاتف</label>
+                  <input type="text" v-model="form.mobile" class="form-control" />
+                  <span class="text-danger" v-if="errors.mobile">{{
+                    errors.mobile[0]
+                  }}</span>
+                </div>
+
+                <div class="form-group mb-3">
+                  <label for="whatsapp">رقم الواتساب</label>
+                  <input type="text" v-model="form.whatsapp" class="form-control" />
+                  <span class="text-danger" v-if="errors.whatsapp">{{
+                    errors.whatsapp[0]
                   }}</span>
                 </div>
               </div>
@@ -88,6 +112,9 @@ export default {
         terms: "",
         contact: "",
         privacy: "",
+        email: "",
+        mobile: "",
+        whatsapp: "",
       },
       errors: [],
       loading: false,

@@ -99,3 +99,5 @@ Route::post('/article/add', [ArticleController::class, 'store']);
 Route::get('/article/show/{id}', [ArticleController::class, 'show']);
 Route::post('/article/edit/{id}', [ArticleController::class, 'update']);
 Route::post('/article/del/{id}', [ArticleController::class, 'destroy']);
+
+Route::post('/deleteUser', [AuthController::class, 'deleteUser'])->middleware('auth:sanctum');

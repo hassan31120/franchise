@@ -27,7 +27,8 @@ class User extends Authenticatable
         'noti_image',
         'gender',
         'date_of_birth',
-        'age'
+        'age',
+        'image'
     ];
 
     /**

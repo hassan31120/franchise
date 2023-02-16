@@ -20,6 +20,10 @@ class UserResource extends JsonResource
             'email' => $this->email,
             'number' => $this->number,
             'userType' => $this->userType,
+            'date_of_birth' => $this->date_of_birth,
+            'age' => $this->age,
+            'gender' => $this->gender,
+            'image' => asset($this->image)
             // 'token' => $this->createToken('mohammedhassanfranchise')->accessToken,
         ];
     }

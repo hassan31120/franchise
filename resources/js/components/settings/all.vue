@@ -10,6 +10,7 @@
         <router-link :to="{ name: 'contact' }">تواصل معنا</router-link>
         <router-link :to="{ name: 'privacy' }">سياسة الخصوصية</router-link>
         <router-link :to="{ name: 'terms' }">الشروط والأحكام</router-link>
+        <router-link :to="{ name: 'support' }">الدعم</router-link>
       </nav>
       <hr />
     </div>

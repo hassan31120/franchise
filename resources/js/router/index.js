@@ -22,6 +22,7 @@ import settingsPage from "../pages/settings/settingsPage.vue";
 import edit_settingsPage from "../pages/settings/edit_settingsPage.vue";
 import about from "../components/settings/about.vue";
 import terms from "../components/settings/terms.vue";
+import support from "../components/settings/support.vue";
 import privacy from "../components/settings/privacy.vue";
 import contact from "../components/settings/contact.vue";
 import adminsPage from "../pages/admins/adminsPage.vue";
@@ -306,6 +307,11 @@ const routes = [
                 path: "/terms",
                 name: "terms",
                 component: terms,
+            },
+            {
+                path: "/support",
+                name: "support",
+                component: support,
             },
         ],
         beforeEnter: (to, from, next) => {
