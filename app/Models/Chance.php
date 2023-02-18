@@ -41,4 +41,9 @@ class Chance extends Model
     {
         return $this->hasMany(Favourite::class, 'chance_id')->where('user_id', auth('sanctum')->user()->id);
     }
+
+    public function orders()
+    {
+        return $this->belongsToMany(User::class, 'orders', 'chance_id', 'user_id')->withTimestamps();
+    }
 }

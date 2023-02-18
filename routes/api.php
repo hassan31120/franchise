@@ -9,6 +9,7 @@ use App\Http\Controllers\Api\ClickController;
 use App\Http\Controllers\Api\CountryController;
 use App\Http\Controllers\Api\FavouriteController;
 use App\Http\Controllers\Api\NotiController;
+use App\Http\Controllers\Api\OrderController;
 use App\Http\Controllers\Api\SettingController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -48,8 +49,13 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/userFavs', [FavouriteController::class, 'userFavs']);
     Route::post('/add_to_favs/{id}', [FavouriteController::class, 'add_to_favs']);
     Route::post('/del_fav/{id}', [FavouriteController::class, 'del_fav']);
+    Route::get('/userOrders', [OrderController::class, 'userOrders']);
+    Route::post('/add_to_oredrs/{id}', [OrderController::class, 'add_to_oredrs']);
+    Route::post('/del_order/{id}', [OrderController::class, 'del_order']);
     Route::post('/addClick/{id}', [ClickController::class, 'addClick']);
 });
+
+Route::get('/orders', [OrderController::class, 'orders']);
 
 Route::get('/countries', [CountryController::class, 'index']);
 Route::get('/users', [AuthController::class, 'users']);
