@@ -39,7 +39,7 @@
                 ><span class="ml-1 item-text">كل المسؤولين</span>
               </router-link>
             </li>
-            <li class="nav-item">
+            <li class="nav-item" v-if="type == 'superAdmin'">
               <router-link class="nav-link pl-3" :to="{ name: 'add_admin' }"
                 ><span class="ml-1 item-text">إضافة مسؤول جديد</span>
               </router-link>
@@ -241,10 +241,12 @@ export default {
   data() {
     return {
       log: "",
+      type: "",
     };
   },
   mounted() {
     this.auth();
+    this.user();
   },
   methods: {
     logout() {
@@ -255,6 +257,12 @@ export default {
     auth() {
       axios.get(`api/authenticated`).then((res) => {
         this.log = res.data;
+      });
+    },
+
+    user() {
+      axios.get(`api/user`).then((res) => {
+        this.type = res.data.userType;
       });
     },
   },

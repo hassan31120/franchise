@@ -67,6 +67,18 @@
                   }}</span>
                 </div>
                 <div class="form-group mb-3">
+                  <label for="city">المدينة</label>
+                  <input
+                    type="text"
+                    id="city"
+                    class="form-control"
+                    v-model="form.city"
+                  />
+                  <span class="text-danger" v-if="errors.city">{{
+                    errors.city[0]
+                  }}</span>
+                </div>
+                <div class="form-group mb-3">
                   <label for="outlets">منافذ الامتياز</label>
                   <input
                     type="text"
@@ -180,6 +192,18 @@
                   }}</span>
                 </div>
                 <div class="form-group mb-3">
+                  <label for="governorate">المحافظة</label>
+                  <input
+                    type="text"
+                    id="governorate"
+                    class="form-control"
+                    v-model="form.governorate"
+                  />
+                  <span class="text-danger" v-if="errors.governorate">{{
+                    errors.governorate[0]
+                  }}</span>
+                </div>
+                <div class="form-group mb-3">
                   <label for="country_id">البلد</label>
                   <select
                     v-model="form.country_id"
@@ -237,6 +261,8 @@ export default {
         number: "",
         resp: "",
         price: "",
+        governorate: "",
+        city: "",
         country_id: "",
         cat_id: "",
         images: [],
