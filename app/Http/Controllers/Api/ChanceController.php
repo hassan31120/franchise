@@ -104,6 +104,8 @@ class ChanceController extends Controller
             'price' => 'required',
             'cat_id' => 'required',
             'country_id' => 'required',
+            'governorate' => 'required',
+            'city' => 'required'
             // 'images' => 'required',
         ]);
         if ($validator->fails()) {
@@ -168,6 +170,8 @@ class ChanceController extends Controller
                 'price' => 'required',
                 'cat_id' => 'required',
                 'country_id' => 'required',
+                'governorate' => 'required',
+                'city' => 'required'
                 // 'images' => 'required',
             ]);
             if ($validator->fails()) {
