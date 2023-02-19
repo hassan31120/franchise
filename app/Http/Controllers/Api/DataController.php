@@ -11,7 +11,6 @@ use App\Models\Country;
 use App\Models\Order;
 use App\Models\User;
 use Carbon\Carbon;
-use Illuminate\Http\Request;
 
 class DataController extends Controller
 {
@@ -28,8 +27,8 @@ class DataController extends Controller
         $latestOrders = Order::limit(3)->latest('id')->get();
         return response()->json([
             'success' => true,
-            'users' => count($users),
-            'admins' => count($admins),
+            'admins' => count($users),
+            'users' => count($admins),
             'countries' => count($countries),
             'chances' => count($chances),
             'cats' => count($cats),
