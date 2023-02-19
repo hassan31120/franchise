@@ -7,7 +7,7 @@
       <h2 class="h5 page-title pb-5">كل الإعدادات</h2>
       <nav class="pb-0">
         <router-link :to="{ name: 'about' }">من نحن </router-link>
-        <router-link :to="{ name: 'contact' }">تواصل معنا</router-link>
+        <!-- <router-link :to="{ name: 'contact' }">تواصل معنا</router-link> -->
         <router-link :to="{ name: 'privacy' }">سياسة الخصوصية</router-link>
         <router-link :to="{ name: 'terms' }">الشروط والأحكام</router-link>
         <router-link :to="{ name: 'support' }">الدعم</router-link>

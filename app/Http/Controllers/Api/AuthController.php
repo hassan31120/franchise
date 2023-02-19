@@ -102,11 +102,17 @@ class AuthController extends Controller
         $data = $request->all();
 
         if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
-            $user = Auth::user();
-            return response()->json([
-                'success' => true,
-                'user' => new UserResource(Auth::user()),
-            ], 200);
+            $user = auth('sanctum')->user();
+            if ($user->userType == "user") {
+                return response()->json([
+                    'password' => ['عفوا, انت لست مسؤول وليس مصرح لك بالدخول الى لوحة التحكم']
+                ], 404);
+            } else {
+                return response()->json([
+                    'success' => true,
+                    'user' => new UserResource(Auth::user()),
+                ], 200);
+            }
         }
 
         return response()->json([

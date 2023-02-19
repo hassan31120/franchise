@@ -16,6 +16,7 @@ class ChanceResource extends JsonResource
     {
         return [
             'id' => $this->id,
+            'created_at' => $this->created_at->diffForHumans(),
             'title' => $this->title,
             'desc' => $this->desc,
             'logo' => asset($this->logo),

@@ -24,6 +24,7 @@ td a:hover {
     position: relative;
     text-align: center;
 }
+
 .container-fluid table tbody .actions .fe-edit {
     right: 5px;
 }
@@ -40,10 +41,12 @@ td a:hover {
         /* position: absolute; */
         right: -1px;
     }
+
     .container-fluid table tbody .actions .fe-trash {
         /* position: absolute; */
         left: 5px;
     }
+
     ::-webkit-scrollbar {
         height: 7px !important;
     }
@@ -85,7 +88,7 @@ td a:hover {
 .delImage button {
     border: none;
     background-color: #fff;
-    padding:0px;
+    padding: 0px;
     position: absolute;
     margin-right: -16px;
     font-weight: 900 !important;
@@ -93,5 +96,14 @@ td a:hover {
 }
 
 .delImage img {
+    border-radius: 5px;
+}
+
+nav ul .haha a {
+    background-color: #6c757d !important;
+    color: #e4b75d !important;
+}
+
+nav ul li a {
     border-radius: 5px;
 }

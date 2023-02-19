@@ -7,6 +7,7 @@ use App\Http\Controllers\Api\CatController;
 use App\Http\Controllers\Api\ChanceController;
 use App\Http\Controllers\Api\ClickController;
 use App\Http\Controllers\Api\CountryController;
+use App\Http\Controllers\Api\DataController;
 use App\Http\Controllers\Api\FavouriteController;
 use App\Http\Controllers\Api\NotiController;
 use App\Http\Controllers\Api\OrderController;
@@ -29,7 +30,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::middleware('auth:sanctum')->get('/authenticated', function () {
+Route::middleware('isAdmin')->get('/authenticated', function () {
     return true;
 });
 
@@ -53,57 +54,69 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/add_to_oredrs/{id}', [OrderController::class, 'add_to_oredrs']);
     Route::post('/del_order/{id}', [OrderController::class, 'del_order']);
     Route::post('/addClick/{id}', [ClickController::class, 'addClick']);
+    Route::post('/deleteUser', [AuthController::class, 'deleteUser']);
 });
 
-Route::get('/orders', [OrderController::class, 'orders']);
+Route::middleware('auth:sanctum')->group(function () {
+    Route::get('data', [DataController::class, 'data']);
 
+    //users
+    Route::get('/users', [AuthController::class, 'users']);
+    Route::post('user/del/{id}', [AuthController::class, 'delUser']);
+    Route::get('user/show/{id}', [AuthController::class, 'show']);
+    Route::post('user/edit/{id}', [AuthController::class, 'update']);
+
+    //admin
+    Route::get('/admins', [AuthController::class, 'admins']);
+    Route::post('/add_admin', [AuthController::class, 'add_admin']);
+    Route::post('/edit_admin/{id}', [AuthController::class, 'edit_admin']);
+
+    //cats
+    Route::post('cat/add', [CatController::class, 'store']);
+    Route::post('cat/edit/{id}', [CatController::class, 'update']);
+    Route::get('cat/show/{id}', [CatController::class, 'show']);
+    Route::post('cat/del/{id}', [CatController::class, 'destroy']);
+
+    //countries
+    Route::post('country/add', [CountryController::class, 'store']);
+    Route::post('country/edit/{id}', [CountryController::class, 'update']);
+    Route::get('country/show/{id}', [CountryController::class, 'show']);
+    Route::post('country/del/{id}', [CountryController::class, 'destroy']);
+
+    //chances
+    Route::post('chance/add', [ChanceController::class, 'store']);
+    Route::post('chance/edit/{id}', [ChanceController::class, 'update']);
+    Route::post('chance/del/{id}', [ChanceController::class, 'destroy']);
+    Route::get('/show/{id}', [ChanceController::class, 'show']);
+    Route::post('chanceImage/del/{id}', [ChanceController::class, 'delImage']);
+
+    //articles
+    Route::post('/article/add', [ArticleController::class, 'store']);
+    Route::get('/article/show/{id}', [ArticleController::class, 'show']);
+    Route::post('/article/edit/{id}', [ArticleController::class, 'update']);
+    Route::post('/article/del/{id}', [ArticleController::class, 'destroy']);
+
+    //orders
+    Route::get('/orders', [OrderController::class, 'orders']);
+    Route::post('order/del/{id}', [OrderController::class, 'delOrder']);
+
+    //noti
+    Route::post('/push', [NotiController::class, 'push']);
+
+    //banners
+    Route::post('/banner/add', [BannerController::class, 'store']);
+    Route::post('/banner/edit/{id}', [BannerController::class, 'update']);
+    Route::post('/banner/del/{id}', [BannerController::class, 'destroy']);
+
+    //settings
+    Route::post('/setting/edit', [SettingController::class, 'edit']);
+});
+
+
+Route::get('/articles', [ArticleController::class, 'index']);
 Route::get('/countries', [CountryController::class, 'index']);
-Route::get('/users', [AuthController::class, 'users']);
 Route::get('/myCahnces', [ChanceController::class, 'myCahnces']);
 Route::get('/cats', [CatController::class, 'index']);
 Route::get('/chances/{id}', [ChanceController::class, 'index']);
-Route::get('/show/{id}', [ChanceController::class, 'show']);
-
-Route::post('country/add', [CountryController::class, 'store']);
-Route::post('country/edit/{id}', [CountryController::class, 'update']);
-Route::post('country/del/{id}', [CountryController::class, 'destroy']);
-
-Route::post('cat/add', [CatController::class, 'store']);
-Route::post('cat/edit/{id}', [CatController::class, 'update']);
-Route::post('cat/del/{id}', [CatController::class, 'destroy']);
-
-Route::post('chance/add', [ChanceController::class, 'store']);
-Route::post('chance/edit/{id}', [ChanceController::class, 'update']);
-Route::post('chance/del/{id}', [ChanceController::class, 'destroy']);
-
-
-Route::post('user/del/{id}', [AuthController::class, 'delUser']);
-
-Route::get('country/show/{id}', [CountryController::class, 'show']);
-Route::get('cat/show/{id}', [CatController::class, 'show']);
-Route::get('user/show/{id}', [AuthController::class, 'show']);
-Route::post('user/edit/{id}', [AuthController::class, 'update']);
-
-Route::post('chanceImage/del/{id}', [ChanceController::class, 'delImage']);
-
 Route::get('/banners', [BannerController::class, 'index']);
-Route::post('/banner/add', [BannerController::class, 'store']);
-Route::post('/banner/edit/{id}', [BannerController::class, 'update']);
-Route::post('/banner/del/{id}', [BannerController::class, 'destroy']);
-
-Route::post('/push', [NotiController::class, 'push']);
-
 Route::get('/settings', [SettingController::class, 'settings']);
-Route::post('/setting/edit', [SettingController::class, 'edit']);
-
-Route::get('/admins', [AuthController::class, 'admins']);
-Route::post('/add_admin', [AuthController::class, 'add_admin']);
-Route::post('/edit_admin/{id}', [AuthController::class, 'edit_admin']);
-
-Route::get('/articles', [ArticleController::class, 'index']);
-Route::post('/article/add', [ArticleController::class, 'store']);
-Route::get('/article/show/{id}', [ArticleController::class, 'show']);
-Route::post('/article/edit/{id}', [ArticleController::class, 'update']);
-Route::post('/article/del/{id}', [ArticleController::class, 'destroy']);
-
-Route::post('/deleteUser', [AuthController::class, 'deleteUser'])->middleware('auth:sanctum');

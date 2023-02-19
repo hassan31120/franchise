@@ -99,19 +99,31 @@ class OrderController extends Controller
 
     public function orders()
     {
+        $orders = Order::all();
+        if (count($orders) > 0) {
+            return OrderResource::collection($orders);
+        } else {
+            return response()->json([
+                'success' => false,
+                'orders' => []
+            ], 200);
+        }
+    }
 
-        $oredrs = Order::all();
-        return OrderResource::collection($oredrs);
-        // if (count($oredrs) > 0) {
-        //     return response()->json([
-        //         'success' => true,
-        //         'oredrs' => ChanceResource::collection($oredrs)
-        //     ], 200);
-        // } else {
-        //     return response()->json([
-        //         'success' => false,
-        //         'oredrs' => []
-        //     ], 200);
-        // }
+    public function delOrder($id)
+    {
+        $order = Order::find($id);
+        if ($order) {
+            $order->delete();
+            return response()->json([
+                'success' => true,
+                'msg' => 'order has been deleted successfully'
+            ], 200);
+        } else {
+            return response()->json([
+                'success' => false,
+                'msg' => 'there is no such order'
+            ], 404);
+        }
     }
 }

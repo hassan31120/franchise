@@ -182,6 +182,24 @@
         </li>
         <li class="nav-item dropdown">
           <a
+            href="#orders"
+            data-toggle="collapse"
+            aria-expanded="false"
+            class="dropdown-toggle nav-link"
+          >
+            <i class="fe fe-git-pull-request fe-16"></i>
+            <span class="ml-3 item-text">الطلبات</span>
+          </a>
+          <ul class="collapse list-unstyled pl-4 w-100" id="orders">
+            <li class="nav-item">
+              <router-link class="nav-link pl-3" :to="{ name: 'orders' }"
+                ><span class="ml-1 item-text">كل الطلبات</span>
+              </router-link>
+            </li>
+          </ul>
+        </li>
+        <li class="nav-item dropdown">
+          <a
             href="#settings"
             data-toggle="collapse"
             aria-expanded="false"

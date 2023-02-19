@@ -26,6 +26,7 @@ import support from "../components/settings/support.vue";
 import privacy from "../components/settings/privacy.vue";
 import contact from "../components/settings/contact.vue";
 import adminsPage from "../pages/admins/adminsPage.vue";
+import ordersPage from "../pages/orders/ordersPage.vue";
 import add_adminPage from "../pages/admins/add_adminPage.vue";
 import edit_adminPage from "../pages/admins/edit_adminPage.vue";
 import articlesPage from "../pages/articles/articlesPage.vue";
@@ -426,6 +427,21 @@ const routes = [
                     next();
                 })
                 .catch(() => {
+                    return next({ name: "login" });
+                });
+        },
+    },
+    {
+        path: "/orders",
+        name: "orders",
+        component: ordersPage,
+        beforeEnter: (to, from, next) => {
+            axios
+                .get(`api/authenticated`)
+                .then(() => {
+                    next();
+                })
+                .catch((err) => {
                     return next({ name: "login" });
                 });
         },

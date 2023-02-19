@@ -34,7 +34,7 @@
                     errors.terms[0]
                   }}</span>
                 </div>
-                <div class="form-group mb-3" style="direction: ltr !important">
+                <!-- <div class="form-group mb-3" style="direction: ltr !important">
                   <label for="contact">تواصل معنا</label>
                   <QuillEditor
                     v-model:content="form.contact"
@@ -44,7 +44,7 @@
                   <span class="text-danger" v-if="errors.contact">{{
                     errors.contact[0]
                   }}</span>
-                </div>
+                </div> -->
 
                 <div class="form-group mb-3" style="direction: ltr !important">
                   <label for="privacy">سياسة الخصوصية</label>
