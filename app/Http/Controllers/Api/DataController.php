@@ -23,12 +23,12 @@ class DataController extends Controller
         $chances = Chance::all();
         $cats = Cat::all();
         $orders = Order::all();
-        $latestChances = Chance::limit(3)->latest('id')->get();
-        $latestOrders = Order::limit(3)->latest('id')->get();
+        $latestChances = Chance::limit(4)->latest('id')->get();
+        $latestOrders = Order::limit(4)->latest('id')->get();
         return response()->json([
             'success' => true,
-            'admins' => count($users),
-            'users' => count($admins),
+            'admins' => count($admins),
+            'users' => count($users),
             'countries' => count($countries),
             'chances' => count($chances),
             'cats' => count($cats),

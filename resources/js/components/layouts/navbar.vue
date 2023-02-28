@@ -1,11 +1,11 @@
 <template>
   <nav class="navbar navbar-expand-lg navbar-light bg-light navHassan">
-    <div class="w-99 mb-4 d-flex">
+    <div class="w-99 mb-3 d-flex">
       <router-link
         class="navbar-brand mx-auto mt-3 flex-fill text-center"
         :to="{ name: 'home' }"
       >
-        <img src="@/assets/new.png" alt="logo" width="180" />
+        <img src="@/assets/franchisingarab.png" alt="logo" width="200" />
       </router-link>
     </div>
     <button
@@ -21,7 +21,30 @@
     </button>
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav flex-fill w-100 mb-2">
+        <ul class="navbar-nav flex-fill w-100 mb-2">
+        <li class="nav-item dropdown">
+          <a
+            href="#admins"
+            data-toggle="collapse"
+            aria-expanded="false"
+            class="dropdown-toggle nav-link"
+          >
+            <i class="fe fe-user-check fe-16"></i>
+            <span class="ml-3 item-text">المسؤولين</span>
+          </a>
+          <ul class="collapse list-unstyled pl-4 w-100" id="admins">
+            <li class="nav-item">
+              <router-link class="nav-link pl-3" :to="{ name: 'admins' }"
+                ><span class="ml-1 item-text">كل المسؤولين</span>
+              </router-link>
+            </li>
+            <li class="nav-item" v-if="type == 'superAdmin'">
+              <router-link class="nav-link pl-3" :to="{ name: 'add_admin' }"
+                ><span class="ml-1 item-text">إضافة مسؤول جديد</span>
+              </router-link>
+            </li>
+          </ul>
+        </li>
         <li class="nav-item dropdown">
           <a
             href="#members"
@@ -45,6 +68,7 @@
             </li>
           </ul>
         </li>
+
         <li class="nav-item dropdown">
           <a
             href="#countries"
@@ -52,18 +76,18 @@
             aria-expanded="false"
             class="dropdown-toggle nav-link"
           >
-            <i class="fe fe-pie-chart fe-16"></i>
-            <span class="ml-3 item-text">البلاد</span>
+            <i class="fe fe-globe fe-16"></i>
+            <span class="ml-3 item-text">الدول</span>
           </a>
           <ul class="collapse list-unstyled pl-4 w-100" id="countries">
             <li class="nav-item">
               <router-link class="nav-link pl-3" :to="{ name: 'countries' }"
-                ><span class="ml-1 item-text">كل البلاد</span>
+                ><span class="ml-1 item-text">كل الدول</span>
               </router-link>
             </li>
             <li class="nav-item">
               <router-link class="nav-link pl-3" :to="{ name: 'add_country' }"
-                ><span class="ml-1 item-text">إضافة بلد جديد</span>
+                ><span class="ml-1 item-text">إضافة دولة جديدة</span>
               </router-link>
             </li>
           </ul>
@@ -76,17 +100,17 @@
             class="dropdown-toggle nav-link"
           >
             <i class="fe fe-layers fe-16"></i>
-            <span class="ml-3 item-text">الأقسام</span>
+            <span class="ml-3 item-text">الأنشطة التجارية</span>
           </a>
           <ul class="collapse list-unstyled pl-4 w-100" id="categories">
             <li class="nav-item">
               <router-link class="nav-link pl-3" :to="{ name: 'cats' }"
-                ><span class="ml-1 item-text">كل الأقسام</span>
+                ><span class="ml-1 item-text">كل الأنشطة التجارية</span>
               </router-link>
             </li>
             <li class="nav-item">
               <router-link class="nav-link pl-3" :to="{ name: 'add_cat' }"
-                ><span class="ml-1 item-text">إضافة قسم جديد</span>
+                ><span class="ml-1 item-text">إضافة نشاط تجاري جديد</span>
               </router-link>
             </li>
           </ul>
@@ -116,6 +140,29 @@
         </li>
         <li class="nav-item dropdown">
           <a
+            href="#articles"
+            data-toggle="collapse"
+            aria-expanded="false"
+            class="dropdown-toggle nav-link"
+          >
+            <i class="fe fe-book-open fe-16"></i>
+            <span class="ml-3 item-text">المقالات</span>
+          </a>
+          <ul class="collapse list-unstyled pl-4 w-100" id="articles">
+            <li class="nav-item">
+              <router-link class="nav-link pl-3" :to="{ name: 'articles' }"
+                ><span class="ml-1 item-text">كل المقالات</span>
+              </router-link>
+            </li>
+            <li class="nav-item">
+              <router-link class="nav-link pl-3" :to="{ name: 'add_article' }"
+                ><span class="ml-1 item-text">إضافة مقال جديد</span>
+              </router-link>
+            </li>
+          </ul>
+        </li>
+        <li class="nav-item dropdown">
+          <a
             href="#noti"
             data-toggle="collapse"
             aria-expanded="false"
@@ -134,6 +181,24 @@
         </li>
         <li class="nav-item dropdown">
           <a
+            href="#orders"
+            data-toggle="collapse"
+            aria-expanded="false"
+            class="dropdown-toggle nav-link"
+          >
+            <i class="fe fe-git-pull-request fe-16"></i>
+            <span class="ml-3 item-text">الطلبات</span>
+          </a>
+          <ul class="collapse list-unstyled pl-4 w-100" id="orders">
+            <li class="nav-item">
+              <router-link class="nav-link pl-3" :to="{ name: 'orders' }"
+                ><span class="ml-1 item-text">كل الطلبات</span>
+              </router-link>
+            </li>
+          </ul>
+        </li>
+        <li class="nav-item dropdown">
+          <a
             href="#settings"
             data-toggle="collapse"
             aria-expanded="false"
@@ -144,7 +209,7 @@
           </a>
           <ul class="collapse list-unstyled pl-4 w-100" id="settings">
             <li class="nav-item">
-              <router-link class="nav-link pl-3" :to="{ name: 'settings' }"
+              <router-link class="nav-link pl-3" :to="{ name: 'about' }"
                 ><span class="ml-1 item-text">كل الإعدادات</span>
               </router-link>
             </li>

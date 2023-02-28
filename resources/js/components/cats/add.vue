@@ -4,18 +4,18 @@
       <div v-if="loading">
         <div><loadingPage /></div>
       </div>
-      <h2 class="h5 page-title pb-5">إضافة قسم جديد</h2>
+      <h2 class="h5 page-title pb-5">إضافة نشاط تجاري جديد</h2>
 
       <form @submit.prevent="saveForm">
         <div class="card shadow mb-4">
           <div class="card-header">
-            <strong class="card-title">إضافة قسم جديد</strong>
+            <strong class="card-title">إضافة نشاط تجاري جديد</strong>
           </div>
           <div class="card-body">
             <div class="row">
               <div class="col-md-6 align-self-center">
                 <div class="form-group mb-3">
-                  <label for="simpleinput">الإسم</label>
+                  <label for="simpleinput">الاسم</label>
                   <input
                     type="text"
                     id="simpleinput"

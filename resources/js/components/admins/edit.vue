@@ -50,34 +50,25 @@
                   }}</span>
                 </div>
                 <div class="form-group mb-3">
-                  <div>نوع المسؤول</div>
-                  <div class="hahaa">
-                    <div class="selector">
-                      <div class="selecotr-item">
-                        <input
-                          type="radio"
-                          id="radio1"
-                          name="selector"
-                          class="selector-item_radio"
-                          value="superAdmin"
-                          v-model="form.userType"
-                        />
-                        <label for="radio1" class="selector-item_label"
-                          >super admin</label
-                        >
-                      </div>
-                      <div class="selecotr-item">
-                        <input
-                          type="radio"
-                          id="radio2"
-                          name="selector"
-                          class="selector-item_radio"
-                          value="admin"
-                          v-model="form.userType"
-                        />
-                        <label for="radio2" class="selector-item_label">admin</label>
-                      </div>
-                    </div>
+                  <div class="mb-2">نوع المسؤول</div>
+                  <div style="margin-right: 17px">
+                    <input
+                      type="radio"
+                      class="form-check-input"
+                      value="superAdmin"
+                      v-model="form.userType"
+                    />
+                    <label for="radio1" class="">super admin</label>
+                  </div>
+                  <div style="margin-right: 17px">
+                    <input
+                      type="radio"
+                      name="selector"
+                      class="form-check-input"
+                      value="admin"
+                      v-model="form.userType"
+                    />
+                    <label for="radio2" class="">admin</label>
                   </div>
                   <span class="text-danger" v-if="errors.userType">{{
                     errors.userType[0]
@@ -177,56 +168,4 @@ export default {
 };
 </script>
 
-<style scoped>
-.hahaa {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.selector {
-  position: relative;
-  width: 100%;
-  background-color: var(--smoke-white);
-  height: 80px;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-}
-.selecotr-item {
-  position: relative;
-  flex-basis: calc(70% / 3);
-  height: 90%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.selector-item_radio {
-  appearance: none;
-  display: none;
-}
-.selector-item_label {
-  position: relative;
-  height: 80%;
-  width: 100%;
-  text-align: center;
-  border-radius: 9999px;
-  line-height: 400%;
-  font-weight: 900;
-  transition-duration: 0.5s;
-  transform: none;
-  margin: 0;
-}
-.selector-item_radio:checked + .selector-item_label {
-  background-color: #ff7c00;
-  color: var(--white);
-  transform: translateY(-2px);
-}
-@media (max-width: 480px) {
-  .selector {
-    width: 90%;
-  }
-}
-</style>
+<style scoped></style>

@@ -1,21 +1,25 @@
 <template>
   <div class="wrapper vh-100" style="overflow: hidden">
+    <div v-if="loading">
+      <div><loadingPage /></div>
+    </div>
     <div class="row align-items-center h-100 d-flex justify-content-center">
       <!-- ./col -->
       <div class="col-lg-6">
         <div class="w-50 mx-auto">
           <form @submit.prevent="saveForm" class="mx-auto text-center">
-            <a
+            <router-link
               class="navbar-brand mx-auto mt-2 flex-fill text-center"
-              href="./index.html"
+              :to="{ name: 'home' }"
+              style="margin-bottom: 50px;"
             >
-              <img src="@/assets/new.png" alt="" style="width: 300px" />
-            </a>
+              <img class="logo" src="@/assets/new.png" alt="logo" style="width: 360px" />
+            </router-link>
             <div class="form-group">
               <input
                 type="email"
                 class="form-control form-control-lg"
-                placeholder="الإيميل"
+                placeholder="البريد الإلكتروني"
                 required=""
                 autofocus=""
                 v-model="form.email"
@@ -27,7 +31,7 @@
               <input
                 type="password"
                 class="form-control form-control-lg"
-                placeholder="الرقم السري"
+                placeholder="كلمة المرور"
                 required=""
                 v-model="form.password"
                 style="border-radius: 10px"
@@ -64,12 +68,14 @@ export default {
         password: "",
       },
       errors: [],
+      loading: false,
     };
   },
 
   methods: {
-    saveForm() {
-      axios
+    async saveForm() {
+      this.loading = true;
+      await axios
         .post(`api/dashLogin`, this.form)
         .then(() => {
           this.$router.push({ name: "home" });
@@ -77,9 +83,16 @@ export default {
         .catch((error) => {
           this.errors = error.response.data;
         });
+      this.loading = false;
     },
   },
 };
 </script>
 
-<style></style>
+<style scoped>
+@media only screen and (max-width: 992px) {
+  .logo {
+    width: 180px !important;
+  }
+}
+</style>

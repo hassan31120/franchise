@@ -116,7 +116,7 @@ class AuthController extends Controller
         }
 
         return response()->json([
-            'password' => ['تحقق من الإيميل والرقم السري!']
+            'password' => ['تحقق من البريد الإلكتروني وكلمة المرور!']
         ], 404);
     }
 

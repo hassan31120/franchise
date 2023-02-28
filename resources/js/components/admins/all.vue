@@ -9,11 +9,11 @@
         <thead style="background-color: #ff7c00">
           <tr>
             <th scope="col">#</th>
-            <th scope="col">الإسم</th>
-            <th scope="col">رقم الهاتف</th>
-            <th scope="col">الإيميل</th>
+            <th scope="col">الاسم</th>
+            <th scope="col">رقم الجوال</th>
+            <th scope="col">البريد الإلكتروني</th>
             <th scope="col">نوع المسؤول</th>
-            <th scope="col"></th>
+            <th scope="col" v-if="type == 'superAdmin'"></th>
           </tr>
         </thead>
         <tbody>
@@ -23,7 +23,7 @@
             <td>{{ user.number }}</td>
             <td>{{ user.email }}</td>
             <td>{{ user.userType }}</td>
-            <td class="actions">
+            <td class="actions" v-if="type == 'superAdmin'">
               <router-link :to="{ name: 'edit_admin', params: { id: user.id } }">
                 <button type="button"><i class="fe fe-edit fe-16"></i></button
               ></router-link>
@@ -45,10 +45,12 @@ export default {
     return {
       users: [],
       loading: false,
+      type: "",
     };
   },
   mounted() {
     this.fetchUsers();
+    this.user();
   },
   methods: {
     delUser(id) {
@@ -82,6 +84,12 @@ export default {
           this.$router.push({ name: "serverErr" });
         });
       this.loading = false;
+    },
+
+    async user() {
+      await axios.get(`api/user`).then((res) => {
+        this.type = res.data.userType;
+      });
     },
   },
 };

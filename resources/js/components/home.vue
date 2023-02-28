@@ -9,35 +9,52 @@
           <!-- <h2>Section title</h2> -->
           <h2 class="h5 page-title mt-3">مرحبا {{ user.name }} !</h2>
           <p class="text-muted">مرحبا بك في لوحة التحكم الخاصة ب Franchising Arab</p>
-          <div class="card-columns">
-            <div class="card shadow mb-4">
-              <div class="card-body">
-                <div class="py-5 text-center">
-                  <p class="text-muted mb-2">عدد المسؤولين</p>
-                  <h2 class="mb-1">{{ data.users }}</h2>
+          <div class="row">
+            <div class="col-md-4 mb-4">
+              <div class="card shadow">
+                <div class="card-body">
+                  <div class="row align-items-center">
+                    <div class="col">
+                      <span class="h2 mb-0">{{ data.admins }}</span>
+                      <p class="small text-muted mb-2">عدد المسؤولين</p>
+                    </div>
+                    <div class="col-auto">
+                      <span class="fe fe-32 fe-user-check text-muted mb-0"></span>
+                    </div>
+                  </div>
                 </div>
               </div>
-              <!-- .card-body -->
             </div>
-            <div class="card shadow mb-4">
-              <div class="card-body">
-                <div class="py-5 text-center">
-                  <p class="text-muted mb-2">عدد الأعضاء</p>
-                  <h2 class="mb-1">{{ data.admins }}</h2>
+            <div class="col-md-4 mb-4">
+              <div class="card shadow">
+                <div class="card-body">
+                  <div class="row align-items-center">
+                    <div class="col">
+                      <span class="h2 mb-0">{{ data.users }}</span>
+                      <p class="small text-muted mb-2">عدد الأعضاء</p>
+                    </div>
+                    <div class="col-auto">
+                      <span class="fe fe-32 fe-users text-muted mb-0"></span>
+                    </div>
+                  </div>
                 </div>
               </div>
-              <!-- .card-body -->
             </div>
-            <div class="card shadow mb-4">
-              <div class="card-body">
-                <div class="py-5 text-center">
-                  <p class="text-muted mb-2">الدول المتاحة</p>
-                  <h2 class="mb-1">{{ data.countries }}</h2>
+            <div class="col-md-4 mb-4">
+              <div class="card shadow">
+                <div class="card-body">
+                  <div class="row align-items-center">
+                    <div class="col">
+                      <span class="h2 mb-0">{{ data.countries }}</span>
+                      <p class="small text-muted mb-2">الدول المتاحة</p>
+                    </div>
+                    <div class="col-auto">
+                      <span class="fe fe-32 fe-globe text-muted mb-0"></span>
+                    </div>
+                  </div>
                 </div>
               </div>
-              <!-- .card-body -->
             </div>
-            <!-- .card -->
           </div>
           <div class="row">
             <div class="col-md-4 mb-4">

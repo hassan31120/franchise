@@ -9,9 +9,9 @@
         <thead style="background-color: #ff7c00">
           <tr>
             <th scope="col">#</th>
-            <th scope="col">الإسم</th>
-            <th scope="col">رقم الهاتف</th>
-            <th scope="col">الإيميل</th>
+            <th scope="col">الاسم</th>
+            <th scope="col">رقم الجوال</th>
+            <th scope="col">البريد الإلكتروني</th>
             <th scope="col">نوع المستخدم</th>
             <th scope="col"></th>
           </tr>

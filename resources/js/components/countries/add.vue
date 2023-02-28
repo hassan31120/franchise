@@ -9,13 +9,13 @@
       <form @submit.prevent="saveForm">
         <div class="card shadow mb-4">
           <div class="card-header">
-            <strong class="card-title">إضافة بلد جديد</strong>
+            <strong class="card-title">إضافة دولة جديد</strong>
           </div>
           <div class="card-body">
             <div class="row">
               <div class="col-md-6 align-self-center">
                 <div class="form-group mb-3">
-                  <label for="simpleinput">الإسم</label>
+                  <label for="simpleinput">الاسم</label>
                   <input
                     type="text"
                     id="simpleinput"

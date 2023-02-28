@@ -15,7 +15,7 @@
             <div class="row">
               <div class="col-md-6 align-self-center">
                 <div class="form-group mb-3">
-                  <label for="simpleinput">الإسم</label>
+                  <label for="simpleinput">الاسم</label>
                   <input
                     type="text"
                     id="simpleinput"
@@ -25,7 +25,7 @@
                   <span class="text-danger" v-if="errors.name">{{ errors.name[0] }}</span>
                 </div>
                 <div class="form-group mb-3">
-                  <label for="example-email">الإيميل</label>
+                  <label for="example-email">البريد الإلكتروني</label>
                   <input
                     type="email"
                     id="example-email"
@@ -38,7 +38,7 @@
                   }}</span>
                 </div>
                 <div class="form-group mb-3">
-                  <label for="simpleinput">رقم الهاتف</label>
+                  <label for="simpleinput">رقم الجوال</label>
                   <input
                     type="text"
                     id="simpleinput"
@@ -50,7 +50,7 @@
                   }}</span>
                 </div>
                 <div class="form-group mb-3">
-                  <label for="example-password">الرقم السري</label>
+                  <label for="example-password">كلمة المرور</label>
                   <input
                     type="password"
                     id="example-password"
@@ -62,7 +62,7 @@
                   }}</span>
                 </div>
                 <div class="form-group mb-3">
-                  <label for="example-palaceholder">تأكيد الرقم السري</label>
+                  <label for="example-palaceholder">تأكيد كلمة المرور</label>
                   <input
                     type="password"
                     id="example-palaceholder"

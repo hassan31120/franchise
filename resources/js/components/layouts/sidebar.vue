@@ -13,12 +13,12 @@
     </a>
     <nav class="vertnav navbar navbar-light">
       <!-- nav bar -->
-      <div class="w-100 mb-5 d-flex">
+      <div class="w-100 mb-4 d-flex">
         <router-link
           class="navbar-brand mx-auto mt-2 flex-fill text-center"
           :to="{ name: 'home' }"
         >
-          <img src="@/assets/new.png" alt="logo" width="230" />
+          <img src="@/assets/franchisingarab.png" alt="logo" width="230" />
         </router-link>
       </div>
 
@@ -77,7 +77,7 @@
             aria-expanded="false"
             class="dropdown-toggle nav-link"
           >
-            <i class="fe fe-pie-chart fe-16"></i>
+            <i class="fe fe-globe fe-16"></i>
             <span class="ml-3 item-text">الدول</span>
           </a>
           <ul class="collapse list-unstyled pl-4 w-100" id="countries">
@@ -124,7 +124,7 @@
             class="dropdown-toggle nav-link"
           >
             <i class="fe fe-tag fe-16"></i>
-            <span class="ml-3 item-text">فرص الإمتياز</span>
+            <span class="ml-3 item-text">فرص الامتياز</span>
           </a>
           <ul class="collapse list-unstyled pl-4 w-100" id="chances">
             <li class="nav-item">
@@ -228,7 +228,7 @@
           class="btn mb-2 btn-lg btn-block text-white"
           style="background-color: #ff7c00; border-radius: 50px"
         >
-          <i class="fe fe-log-out fe-12 mr-2"></i><span class="small">تسجيل الخروج</span>
+          <i class="fe fe-log-out fe-12 mr-2"></i><span class="small">تسجيل خروج</span>
         </button>
       </div>
     </nav>
@@ -260,8 +260,8 @@ export default {
       });
     },
 
-    user() {
-      axios.get(`api/user`).then((res) => {
+    async user() {
+      await axios.get(`api/user`).then((res) => {
         this.type = res.data.userType;
       });
     },

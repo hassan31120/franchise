@@ -10,7 +10,7 @@
         <thead style="background-color: #ff7c00">
           <tr>
             <th scope="col">#</th>
-            <th scope="col">الإسم</th>
+            <th scope="col">الاسم</th>
             <th scope="col">الصورة</th>
             <th scope="col"></th>
           </tr>
