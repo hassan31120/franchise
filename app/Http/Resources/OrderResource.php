@@ -15,6 +15,7 @@ class OrderResource extends JsonResource
      */
     public function toArray($request)
     {
+        Carbon::setLocale('ar');
         return [
             'id' => $this->id,
             'user_id' => $this->user_id,

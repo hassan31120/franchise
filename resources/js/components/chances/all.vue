@@ -11,7 +11,7 @@
           <tr>
             <th scope="col">#</th>
             <th scope="col">العنوان</th>
-            <th scope="col">اللوجو</th>
+            <th scope="col">الشعار</th>
             <th scope="col">عدد الفروع</th>
             <th scope="col">السعر</th>
             <th scope="col"></th>
@@ -29,7 +29,7 @@
               <img :src="chance.logo" width="100" height="66.72" alt="" />
             </td>
             <td>{{ chance.branches }}</td>
-            <td>{{ chance.price }}</td>
+            <td>{{ chance.price }} {{ chance.currency }}</td>
             <td class="actions">
               <router-link :to="{ name: 'edit_chance', params: { id: chance.id } }">
                 <button type="button"><i class="fe fe-edit fe-16"></i></button

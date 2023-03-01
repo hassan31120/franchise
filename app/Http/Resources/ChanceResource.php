@@ -28,6 +28,7 @@ class ChanceResource extends JsonResource
             'number' => $this->number,
             'resp' => $this->resp,
             'price' => $this->price,
+            'currency' => $this->currency,
             'country' => $this->country->name,
             'governorate' => $this->governorate,
             'city' => $this->city,

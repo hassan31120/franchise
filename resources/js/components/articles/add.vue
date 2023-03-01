@@ -9,7 +9,7 @@
       <form @submit.prevent="saveForm">
         <div class="card shadow mb-4">
           <div class="card-header">
-            <strong class="card-title">إضافة بلد جديد</strong>
+            <strong class="card-title">إضافة مقال جديد</strong>
           </div>
           <div class="card-body">
             <div class="row">

@@ -67,7 +67,7 @@
                 </div>
 
                 <div class="form-group mb-3">
-                  <label for="mobile">رقم الهاتف  (برجاء ادخال كود الدولة)</label>
+                  <label for="mobile">رقم الجوال (برجاء ادخال كود الدولة)</label>
                   <input type="text" v-model="form.mobile" class="form-control" />
                   <span class="text-danger" v-if="errors.mobile">{{
                     errors.mobile[0]

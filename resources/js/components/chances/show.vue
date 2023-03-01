@@ -6,12 +6,16 @@
       </div>
       <!-- Main content -->
       <div class="row">
-        <div class="col-lg-8">
+        <div class="col-lg-7">
           <!-- Details -->
           <div class="card mb-4">
             <swiper
               :spaceBetween="30"
               :effect="'fade'"
+              :autoplay="{
+                delay: 2000,
+                disableOnInteraction: false,
+              }"
               :navigation="true"
               :pagination="{
                 clickable: true,
@@ -47,7 +51,7 @@
             </div>
           </div>
         </div>
-        <div class="col-lg-4">
+        <div class="col-lg-5">
           <!-- Customer Notes -->
           <div class="card mb-4">
             <div class="card-body">
@@ -98,6 +102,9 @@
 
 <script>
 // Import Swiper Vue.js components
+import SwiperCore, { Autoplay } from "swiper/core";
+SwiperCore.use([Autoplay]);
+
 import { Swiper, SwiperSlide } from "swiper/vue";
 
 // Import Swiper styles

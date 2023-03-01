@@ -41,7 +41,7 @@
                   <span class="text-danger" v-if="errors.desc">{{ errors.desc[0] }}</span>
                 </div>
                 <div class="form-group mb-3">
-                  <label for="logo">اللوجو</label>
+                  <label for="logo">الشعار</label>
                   <input
                     type="file"
                     id="logo"
@@ -68,15 +68,8 @@
                 </div>
                 <div class="form-group mb-3">
                   <label for="city">المدينة</label>
-                  <input
-                    type="text"
-                    id="city"
-                    class="form-control"
-                    v-model="form.city"
-                  />
-                  <span class="text-danger" v-if="errors.city">{{
-                    errors.city[0]
-                  }}</span>
+                  <input type="text" id="city" class="form-control" v-model="form.city" />
+                  <span class="text-danger" v-if="errors.city">{{ errors.city[0] }}</span>
                 </div>
                 <div class="form-group mb-3">
                   <label for="outlets">منافذ الامتياز</label>
@@ -92,8 +85,13 @@
                   }}</span>
                 </div>
                 <div class="form-group mb-3">
-                  <label for="cat_id">القسم</label>
-                  <select v-model="form.cat_id" class="form-control" id="cat_id" required>
+                  <label for="cat_id">النشاط التجاري</label>
+                  <select
+                    v-model="form.cat_id"
+                    class="form-control pt-0"
+                    id="cat_id"
+                    required
+                  >
                     <option :value="cat.id" v-for="cat in cats" :key="cat.id">
                       {{ cat.name }}
                     </option>
@@ -107,7 +105,7 @@
               <div class="col-md-6">
                 <!-- <img src="@/assets/UsabilityTesting.gif" alt="" /> -->
                 <div class="form-group mb-3">
-                  <label for="provider">معلومات مانح الإمتياز</label>
+                  <label for="provider">معلومات مانح الامتياز</label>
                   <input
                     type="text"
                     id="provider"
@@ -120,7 +118,7 @@
                   }}</span>
                 </div>
                 <div class="form-group mb-3">
-                  <label for="number">الرقم</label>
+                  <label for="number">رقم الجوال</label>
                   <input
                     type="text"
                     id="number"
@@ -133,7 +131,7 @@
                   }}</span>
                 </div>
                 <div class="form-group mb-3">
-                  <label for="email">الإيميل</label>
+                  <label for="email">البريد الإلكتروني</label>
                   <input
                     type="text"
                     id="email"
@@ -146,7 +144,7 @@
                   }}</span>
                 </div>
                 <div class="form-group mb-3">
-                  <label for="link">اللينك</label>
+                  <label for="link">الرابط</label>
                   <input
                     type="text"
                     id="link"
@@ -179,17 +177,31 @@
                     errors.title[0]
                   }}</span>
                 </div>
-                <div class="form-group mb-3">
-                  <label for="price">السعر</label>
-                  <input
-                    type="text"
-                    id="price"
-                    class="form-control"
-                    v-model="form.price"
-                  />
-                  <span class="text-danger" v-if="errors.price">{{
-                    errors.price[0]
-                  }}</span>
+                <div class="row">
+                  <div class="form-group mb-3 col-6">
+                    <label for="price">السعر</label>
+                    <input
+                      type="text"
+                      id="price"
+                      class="form-control"
+                      v-model="form.price"
+                    />
+                    <span class="text-danger" v-if="errors.price">{{
+                      errors.price[0]
+                    }}</span>
+                  </div>
+                  <div class="form-group mb-3 col-6">
+                    <label for="currency">العملة</label>
+                    <input
+                      type="text"
+                      id="currency"
+                      class="form-control"
+                      v-model="form.currency"
+                    />
+                    <span class="text-danger" v-if="errors.currency">{{
+                      errors.currency[0]
+                    }}</span>
+                  </div>
                 </div>
                 <div class="form-group mb-3">
                   <label for="governorate">المحافظة</label>
@@ -204,10 +216,10 @@
                   }}</span>
                 </div>
                 <div class="form-group mb-3">
-                  <label for="country_id">البلد</label>
+                  <label for="country_id">الدولة</label>
                   <select
                     v-model="form.country_id"
-                    class="form-control"
+                    class="form-control pt-0"
                     id="country_id"
                     required
                   >
@@ -261,6 +273,7 @@ export default {
         number: "",
         resp: "",
         price: "",
+        currency: "",
         governorate: "",
         city: "",
         country_id: "",

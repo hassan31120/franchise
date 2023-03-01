@@ -11,7 +11,6 @@ use App\Models\Country;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use App\Models\ChanceImage;
-use Symfony\Component\Console\Input\Input;
 
 class ChanceController extends Controller
 {
@@ -24,7 +23,7 @@ class ChanceController extends Controller
     {
         if ($id == 0) {
             $cats = Cat::all();
-            $chances = Chance::all();
+            $chances = Chance::orderBy('id', 'desc')->get();
             if (count($chances) > 0) {
                 return response()->json([
                     'success' => true,
@@ -40,7 +39,7 @@ class ChanceController extends Controller
         } else {
             $country = Country::find($id);
             $cats = Cat::all();
-            $chances = Chance::where('country_id', $country->id)->get();
+            $chances = Chance::where('country_id', $country->id)->orderBy('id', 'desc')->get();
             if (count($chances) > 0) {
                 return response()->json([
                     'success' => true,
@@ -102,6 +101,7 @@ class ChanceController extends Controller
             'number' => 'required',
             'resp' => 'required',
             'price' => 'required',
+            'currency' => 'required',
             'cat_id' => 'required',
             'country_id' => 'required',
             'governorate' => 'required',
@@ -168,14 +168,15 @@ class ChanceController extends Controller
                 'number' => 'required',
                 'resp' => 'required',
                 'price' => 'required',
+                // 'currency' => 'required',
                 'cat_id' => 'required',
                 'country_id' => 'required',
-                'governorate' => 'required',
-                'city' => 'required'
+                // 'governorate' => 'required',
+                // 'city' => 'required',
                 // 'images' => 'required',
             ]);
             if ($validator->fails()) {
-                return response()->json(['message' => $validator->errors()->first()], 400);
+                return response()->json(['message' => $validator->errors()], 400);
             }
             if ($request->hasFile('logo')) {
                 $file = $request->file('logo');
