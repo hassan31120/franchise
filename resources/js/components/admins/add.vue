@@ -4,12 +4,12 @@
       <div v-if="loading">
         <div><loadingPage /></div>
       </div>
-      <h2 class="h5 page-title pb-5">إضافة عضو جديد</h2>
+      <h2 class="h5 page-title pb-5">إضافة مسؤول جديد</h2>
 
       <form @submit.prevent="saveForm">
         <div class="card shadow mb-4">
           <div class="card-header">
-            <strong class="card-title">إضافة عضو جديد</strong>
+            <strong class="card-title">إضافة مسؤول جديد</strong>
           </div>
           <div class="card-body">
             <div class="row">
