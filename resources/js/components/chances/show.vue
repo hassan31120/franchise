@@ -6,7 +6,7 @@
       </div>
       <!-- Main content -->
       <div class="row">
-        <div class="col-lg-7">
+        <div class="col-lg-6">
           <!-- Details -->
           <div class="card mb-4">
             <swiper
@@ -51,7 +51,7 @@
             </div>
           </div>
         </div>
-        <div class="col-lg-5">
+        <div class="col-lg-6">
           <!-- Customer Notes -->
           <div class="card mb-4">
             <div class="card-body">
@@ -70,7 +70,7 @@
               <h3 class="h6">{{ chance.provider }}</h3>
               {{ chance.email }}<br />
               {{ chance.number }}<br />
-              <a :href="chance.link" target="_blank">Link</a><br />
+              <a :href="chance.link" target="_blank">الرابط</a><br />
             </div>
           </div>
 
@@ -80,7 +80,7 @@
               <hr />
               <strong>القطاع</strong> : {{ chance.cat }} <br />
               <strong>البلد</strong> : {{ chance.country }} <br />
-              <strong>السعر</strong> : {{ chance.price }} <br />
+              <strong>السعر</strong> : {{ chance.price }} {{ chance.currency }} <br />
               <strong>عدد الفروع</strong> : {{ chance.branches }}
             </div>
           </div>
